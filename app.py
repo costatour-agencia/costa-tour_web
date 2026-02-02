@@ -40,7 +40,8 @@ st.markdown("""
     }
 
     .hero-section {
-        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1400');
+        /* Nueva imagen de fondo solicitada */
+        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1616036740257-9449ea1f6605?q=80&w=1170&auto=format&fit=crop');
         background-size: cover;
         background-position: center;
         height: 450px;
@@ -136,7 +137,7 @@ st.markdown("""
 st.markdown("""
     <div class="top-bar">
         <div>📞 +57 324 373 1661 | ✉️ veronicaarangopedrozo@gmail.com</div>
-        <div>📍 Bahía Solano | Cartagena | Nuquí | San Andrés | Santa Marta</div>
+        <div>📍 Medellín | Colombia</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -261,7 +262,7 @@ with tab_tours:
     paquetes_estandar = [
         ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", 
          "<b>Siéntete un local más.</b><br>Conoce el corazón de la cultura costera.<br><br><b>Alojamiento:</b> Posadas boutique con encanto.<br><b>Exp. destacada:</b> Clases de cocina tradicional.<br><b>Ideal para:</b> Parejas y viajeros solitarios."),
-        ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXRhcmRlY2VyJTIwcGxheWF8ZW58MHx8MHx8fDA%3D", "e2", 
+        ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop", "e2", 
          "<b>Siente la fuerza del océano.</b><br>Adrenalina y contacto directo con el agua.<br><br><b>Alojamiento:</b> Hoteles modernos con piscina.<br><b>Exp. destacada:</b> Surf o Paddle Board.<br><b>Ideal para:</b> Grupos de amigos."),
         ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", 
          "<b>El alma de la fiesta.</b><br>Celebra la música, el baile y la vida nocturna.<br><br><b>Alojamiento:</b> Céntrico cerca de zonas de ocio.<br><b>Exp. destacada:</b> City Tour nocturno VIP.<br><b>Ideal para:</b> Despedidas de solteros/as."),
