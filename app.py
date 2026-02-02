@@ -83,7 +83,7 @@ st.markdown("""
 st.markdown("""
     <div class="top-bar">
         <div>📞 +57 324 373 1661 | ✉️ veronicaarangopedrozo@gmail.com</div>
-        <div>📍 Bahía Solano | Cartagena | Nuquí | San Andrés | Santa Marta</div>
+        <div>📍 Medellín| Colombia </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -123,11 +123,11 @@ with tab_inicio:
 
 # --- SECCIÓN: TOURS ---
 with tab_tours:
-    st.title("🏝️ Portafolio de Paquetes Turísticos")
+    st.title("Portafolio de Paquetes Turísticos")
     st.info("💡 Nota: En Costa-Tour, el paquete define el nivel de servicio y exclusividad, independientemente del destino elegido.")
     
     # --- CATEGORÍA PREMIUM ---
-    st.markdown("## ⭐ Categoría Premium")
+    st.markdown("## Categoría Premium")
     st.write("Experiencias de élite con vuelos privados, hoteles de autor y atención bilingüe 24/7.")
     
     cp1, cp2, cp3, cp4 = st.columns(4)
@@ -223,7 +223,7 @@ with tab_tours:
     st.divider()
 
     # --- CATEGORÍA ESTÁNDAR ---
-    st.markdown("## 🚢 Categoría Estándar")
+    st.markdown("## Categoría Estándar")
     st.write("La mejor relación calidad-precio para aventureros que aman la autenticidad.")
     
     ce1, ce2, ce3, ce4 = st.columns(4)
@@ -290,3 +290,4 @@ st.markdown("""
         💬 ¡Chatea con nosotros!
     </a>
     """, unsafe_allow_html=True)
+
