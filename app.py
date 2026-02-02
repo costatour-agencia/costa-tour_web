@@ -7,16 +7,22 @@ st.set_page_config(
     page_icon="✈️"
 )
 
-# 2. ESTILOS CSS AVANZADOS (Eliminando recuadros y mejorando estética)
+# 2. ESTILOS CSS AVANZADOS (Eliminación total de recuadros de sistema)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&display=swap');
 
-    /* Fondo general limpio */
-    .main {
-        background-color: #FFFFFF;
+    /* Eliminar fondos de contenedores de Streamlit */
+    .stApp, .main, .st-emotion-cache-10trblm, .st-emotion-cache-6qob1r {
+        background-color: #FFFFFF !important;
     }
     
+    /* Forzar transparencia en columnas y bloques de texto */
+    [data-testid="column"], [data-testid="stVerticalBlock"], .stMarkdown {
+        background-color: transparent !important;
+        border: none !important;
+    }
+
     html, body, [class*="st-emotion-cache"] {
         background-color: #FFFFFF;
         font-family: 'Poppins', sans-serif;
@@ -34,7 +40,7 @@ st.markdown("""
         font-weight: 300;
     }
 
-    /* Hero Section - Inspirado en Protours */
+    /* Hero Section */
     .hero-section {
         background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400');
         background-size: cover;
@@ -48,25 +54,18 @@ st.markdown("""
         flex-direction: column;
         border-radius: 0 0 50px 50px;
         margin-bottom: 40px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
-    /* Estilo de Tarjetas de Paquetes (Sin recuadros feos) */
-    .package-card {
-        background: white;
-        padding: 0px;
-        border-radius: 20px;
-        transition: 0.3s;
-        text-align: center;
-    }
-    
+    /* Estilo de descripción (Limpio sobre blanco) */
     .package-description {
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
-        color: #666;
+        color: #555;
         line-height: 1.6;
-        padding: 10px;
+        padding: 15px 0;
         background: transparent !important;
+        border: none !important;
     }
 
     /* Botones personalizados */
@@ -79,13 +78,12 @@ st.markdown("""
         font-size: 14px !important;
         font-weight: 500 !important;
         transition: 0.4s !important;
-        box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2) !important;
+        box-shadow: 0 4px 15px rgba(192, 57, 43, 0.15) !important;
     }
 
     .stButton>button:hover {
         background-color: #8B4513 !important;
         transform: translateY(-3px) !important;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15) !important;
     }
 
     /* WhatsApp Flotante */
@@ -100,42 +98,34 @@ st.markdown("""
         text-decoration: none;
         z-index: 1000;
         font-weight: 600;
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-        transition: 0.3s;
-    }
-    
-    .whatsapp-float:hover {
-        transform: scale(1.05);
-        color: white;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
     }
 
-    /* Tabs (Menú de navegación) */
+    /* Tabs (Navegación) */
     .stTabs [data-baseweb="tab-list"] {
         gap: 50px;
         justify-content: center;
-        background-color: transparent;
+        background-color: transparent !important;
     }
 
     .stTabs [data-baseweb="tab"] {
-        height: 50px;
         font-weight: 600;
         font-size: 16px;
         color: #8B4513;
-        border-bottom: 2px solid transparent;
-    }
-
-    .stTabs [data-baseweb="tab"]:hover {
-        color: #C0392B;
+        background-color: transparent !important;
     }
 
     /* Quitar bordes de imágenes */
     img {
         border-radius: 15px;
+        background-color: transparent !important;
     }
     
-    /* Eliminar el padding extra de las columnas de Streamlit */
-    [data-testid="column"] {
-        background-color: transparent !important;
+    /* Eliminar líneas divisorias grises de Streamlit si estorban */
+    hr {
+        margin: 2em 0 !important;
+        border: 0 !important;
+        border-top: 1px solid #eee !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -151,7 +141,6 @@ st.markdown("""
 # 4. HEADER CON LOGO
 col_logo, _ = st.columns([1, 3])
 with col_logo:
-    # Logo oficial de Costa-Tour (limpio y sin recuadros)
     st.image("https://i.ibb.co/ds6F7b72/ve.png", width=250)
 
 # 5. NAVEGACIÓN
@@ -191,7 +180,7 @@ with tab_tours:
     st.markdown("<p style='text-align: center; color: #666;'>La excelencia de tu viaje depende del servicio contratado, disponible en todos nuestros destinos.</p>", unsafe_allow_html=True)
     
     # --- PREMIUM ---
-    st.markdown("<h2 style='border-left: 5px solid #C0392B; padding-left: 15px;'>⭐ Categoría Premium</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='border-left: 5px solid #C0392B; padding-left: 15px; margin-top: 40px;'>⭐ Categoría Premium</h2>", unsafe_allow_html=True)
     st.write("Servicios VIP: Vuelos privados, suites de lujo, atención bilingüe y gastronomía gourmet.")
     
     cp1, cp2, cp3, cp4 = st.columns(4)
@@ -211,7 +200,7 @@ with tab_tours:
     for i, (nombre, img, key, desc) in enumerate(paquetes_premium):
         with cols_p[i]:
             st.image(img)
-            st.markdown(f"<h4 style='text-align: center; margin-top: 10px;'>{nombre}</h4>", unsafe_allow_html=True)
+            st.markdown(f"<h4 style='text-align: center; margin-top: 10px; border:none;'>{nombre}</h4>", unsafe_allow_html=True)
             
             if f"show_{key}" not in st.session_state: st.session_state[f"show_{key}"] = False
             
@@ -225,7 +214,7 @@ with tab_tours:
                     st.session_state[f"show_{key}"] = False
                     st.rerun()
 
-    st.markdown("<br><hr><br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     # --- ESTÁNDAR ---
     st.markdown("<h2 style='border-left: 5px solid #8B4513; padding-left: 15px;'>🚢 Categoría Estándar</h2>", unsafe_allow_html=True)
@@ -247,7 +236,7 @@ with tab_tours:
     for i, (nombre, img, key, desc) in enumerate(paquetes_estandar):
         with cols_e[i]:
             st.image(img)
-            st.markdown(f"<h4 style='text-align: center; margin-top: 10px;'>{nombre}</h4>", unsafe_allow_html=True)
+            st.markdown(f"<h4 style='text-align: center; margin-top: 10px; border:none;'>{nombre}</h4>", unsafe_allow_html=True)
             
             if f"show_{key}" not in st.session_state: st.session_state[f"show_{key}"] = False
             
