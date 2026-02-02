@@ -289,7 +289,7 @@ with tab_inicio:
             st.markdown(f"<p style='text-align: center; font-weight: 600; color: #8B4513; padding: 5px;'>{destino['caption']}</p>", unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown("<br>### Síguenos en @CostaTour")
+    st.markdown("Síguenos en @CostaTour")
     st.write("Comparte tus momentos usando nuestro hashtag #MiCostaTour")
     insta_cols = st.columns(6)
     insta_imgs = [
@@ -440,7 +440,7 @@ with tab_info_blog:
         st.link_button("Portal de PQR", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u&route=shorturl")
         st.link_button("Blog: Tips de Viaje", "https://tipsdeviajeparalacostacolombiana.blogspot.com/p/tips-de-viaje-para-la-costa-caribe-y-la.html")
         
-        st.markdown("<br>#### Suscríbete a Ofertas", unsafe_allow_html=True)
+        st.markdown(" Suscríbete a Ofertas", unsafe_allow_html=True)
         # Lógica de suscripción conectada a base de datos simulada/Firestore
         email_input = st.text_input("Ingresa tu email para recibir descuentos VIP", key="subscriber_email")
         if st.button("Suscribirme"):
@@ -456,9 +456,9 @@ with tab_info_blog:
         st.write("📞 WhatsApp: +57 324 373 1661")
         st.write("✉️ Correo: veronicaarangopedrozo@gmail.com")
         
-        st.markdown("#### Nuestras Zonas de Cobertura")
+        st.markdown("### Nuestras Zonas de Cobertura")
         # Mapa restaurado y asegurado
-        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mapa_de_Colombia_%28regiones_naturales%29.svg/1200px-Mapa_de_Colombia_%28regiones_naturales%29.svg.png", 
+        st.image("https://www.imeditores.com/banocc/deltas/IMAGES/mapa2.jpg", 
                  caption="Operamos en toda la Costa Caribe y el litoral Pacífico colombiano", 
                  width=350)
 
@@ -486,3 +486,5 @@ st.markdown("""
          📲 Hablar con un Asesor
     </a>
     """, unsafe_allow_html=True)
+
+
