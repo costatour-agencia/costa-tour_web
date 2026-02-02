@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 # 1. CONFIGURACIÓN DE PÁGINA
 st.set_page_config(
@@ -112,6 +111,18 @@ st.markdown("""
         margin-top: 30px;
     }
 
+    .destination-card {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        background: white;
+        margin-bottom: 20px;
+    }
+    .destination-card:hover {
+        transform: translateY(-5px);
+    }
+
     .comp-table {
         width: 100%;
         border-collapse: collapse;
@@ -165,15 +176,6 @@ st.markdown("""
         color: #F1C40F;
         font-size: 20px;
     }
-
-    /* Galería Automática */
-    .fade-in {
-        animation: fadeIn 1.5s;
-    }
-    @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -218,8 +220,9 @@ with tab_inicio:
     - **Excelencia en el Detalle:** Porque sabemos que lo pequeño hace la diferencia.
     """)
     
-    # --- GALERÍA AUTOMÁTICA DE DESTINOS ---
+    # --- GALERÍA INDIVIDUAL DE DESTINOS ---
     st.markdown("### Destinos que te esperan")
+    st.write("Explora la belleza de nuestras costas a través de estos destinos seleccionados:")
     
     destinos_info = [
         {"url": "https://www.vivecolombia.es/rep/37ce/imagenes/1309902/9/cabo-san-juan-tayronajpg.jpg", "caption": "Cabo San Juan, Parque Tayrona"},
@@ -227,31 +230,17 @@ with tab_inicio:
         {"url": "https://www.vivecolombia.es/rep/91cf/imagenes/1309802/9/cabo-de-la-vela-guajirajpg.jpg", "caption": "Cabo de la Vela, La Guajira"},
         {"url": "https://www.vivecolombia.es/rep/3d52/imagenes/1310202/9/playa-nuqui-chocojpg.jpg", "caption": "Playa Nuquí, Chocó"},
         {"url": "https://images.unsplash.com/photo-1575388107541-520c8c3e48ac?q=80&w=1170&auto=format&fit=crop", "caption": "Atardeceres en el Caribe"},
-        {"url": "https://images.unsplash.com/photo-1625505825515-c2f8db4a29b5?q=80&w=1230&auto=format&fit=crop", "caption": "Aguas cristalinas de San Andrés"}
+        {"url": "https://images.unsplash.com/photo-1625505825515-c2f8db4a29b5?q=80&w=1230&auto=format&fit=crop", "caption": "San Andrés Islas"}
     ]
 
-    # Lógica de cambio automático con st.empty para evitar recargas bruscas
-    if 'auto_idx' not in st.session_state:
-        st.session_state.auto_idx = 0
-
-    placeholder = st.empty()
-    
-    with placeholder.container():
-        current_img = destinos_info[st.session_state.auto_idx]
-        st.markdown(f'<div class="fade-in">', unsafe_allow_html=True)
-        st.image(current_img["url"], use_container_width=True, caption=current_img["caption"])
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    # Controles manuales por si el usuario quiere saltar
-    col_c1, col_c2, col_c3 = st.columns([1, 2, 1])
-    with col_c1:
-        if st.button("⬅️ Anterior"):
-            st.session_state.auto_idx = (st.session_state.auto_idx - 1) % len(destinos_info)
-            st.rerun()
-    with col_c3:
-        if st.button("Siguiente ➡️"):
-            st.session_state.auto_idx = (st.session_state.auto_idx + 1) % len(destinos_info)
-            st.rerun()
+    # Mostramos los destinos en una cuadrícula de 3 columnas para que sean más pequeñas e individuales
+    cols_destinos = st.columns(3)
+    for i, destino in enumerate(destinos_info):
+        with cols_destinos[i % 3]:
+            st.markdown('<div class="destination-card">', unsafe_allow_html=True)
+            st.image(destino["url"], use_container_width=True)
+            st.markdown(f"<p style='text-align: center; font-weight: 600; color: #8B4513; padding: 5px;'>{destino['caption']}</p>", unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
     # --- SECCIÓN DE RESEÑAS ---
     st.markdown("<br><hr><h2 style='text-align: center;'>Voces de nuestros Viajeros</h2>", unsafe_allow_html=True)
