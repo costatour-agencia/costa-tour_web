@@ -136,7 +136,7 @@ st.markdown("""
 st.markdown("""
     <div class="top-bar">
         <div>📞 +57 324 373 1661 | ✉️ veronicaarangopedrozo@gmail.com</div>
-        <div>📍 Bahía Solano | Cartagena | Nuquí | San Andrés | Santa Marta</div>
+        <div>📍 Medellín |Colombia </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -261,7 +261,7 @@ with tab_tours:
     paquetes_estandar = [
         ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", 
          "<b>Siéntete un local más.</b><br>Conoce el corazón de la cultura costera.<br><br><b>Alojamiento:</b> Posadas boutique con encanto.<br><b>Exp. destacada:</b> Clases de cocina tradicional.<br><b>Ideal para:</b> Parejas y viajeros solitarios."),
-        ("Marea", "https://miviajeporcolombia.com/wp-content/uploads/2019/05/las-playas-donde-banarse-en-cartagena.jpg", "e2", 
+        ("Marea", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2vfcmuxm56XEvBrFrKU-2dj3GbSkIFK552A&s", "e2", 
          "<b>Siente la fuerza del océano.</b><br>Adrenalina y contacto directo con el agua.<br><br><b>Alojamiento:</b> Hoteles modernos con piscina.<br><b>Exp. destacada:</b> Surf o Paddle Board.<br><b>Ideal para:</b> Grupos de amigos."),
         ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", 
          "<b>El alma de la fiesta.</b><br>Celebra la música, el baile y la vida nocturna.<br><br><b>Alojamiento:</b> Céntrico cerca de zonas de ocio.<br><b>Exp. destacada:</b> City Tour nocturno VIP.<br><b>Ideal para:</b> Despedidas de solteros/as."),
