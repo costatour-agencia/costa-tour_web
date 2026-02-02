@@ -255,7 +255,6 @@ with tab_inicio:
         st.markdown("- **Excelencia en el Detalle:** Porque lo pequeño hace la diferencia.")
     
     with col_intro2:
-        # Añadimos un pequeño indicador de impacto
         st.markdown("""
             <div class="stats-container">
                 <div class="stat-box">
@@ -269,7 +268,6 @@ with tab_inicio:
             </div>
         """, unsafe_allow_html=True)
 
-    # --- GALERÍA INDIVIDUAL DE DESTINOS ---
     st.markdown("### Destinos que te esperan")
     st.write("Explora la belleza de nuestras costas a través de estos destinos seleccionados:")
     
@@ -290,23 +288,22 @@ with tab_inicio:
             st.markdown(f"<p style='text-align: center; font-weight: 600; color: #8B4513; padding: 5px;'>{destino['caption']}</p>", unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- SECCIÓN INSTAGRAM MOMENTS ---
     st.markdown("<br>### Síguenos en @CostaTour")
     st.write("Comparte tus momentos usando nuestro hashtag #MiCostaTour")
     insta_cols = st.columns(6)
+    # Imágenes actualizadas solicitadas por el usuario
     insta_imgs = [
         "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1170&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=1230&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1173&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1520483844508-8c731fc6ff4f?q=80&w=1170&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1544124499-58912cbddaad?q=80&w=1230&auto=format&fit=crop",
+        "https://haciendasycasonas.com/wp-content/uploads/2023/07/lavid0048-copia.webp",
+        "https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2024/10/Cabanas-Kali-TreeII.jpg",
         "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?q=80&w=1172&auto=format&fit=crop"
     ]
     for i, img_url in enumerate(insta_imgs):
         with insta_cols[i]:
             st.markdown(f'<div class="instagram-feed"><img src="{img_url}"></div>', unsafe_allow_html=True)
 
-    # --- SECCIÓN DE RESEÑAS ---
     st.markdown("<br><hr><h2 style='text-align: center;'>Voces de nuestros Viajeros</h2>", unsafe_allow_html=True)
     rev_col1, rev_col2, rev_col3 = st.columns(3)
     testimonios = [
@@ -323,6 +320,38 @@ with tab_inicio:
 with tab_tours:
     st.markdown("<h1 style='text-align: center;'>Portafolio de Experiencias</h1>", unsafe_allow_html=True)
     
+    # TABLA COMPARATIVA AL PRINCIPIO
+    st.markdown("### Comparativa de Líneas de Servicio")
+    st.markdown("""
+    <table class="comp-table">
+        <tr>
+            <th>Característica</th>
+            <th>Línea Estándar</th>
+            <th>Línea Premium</th>
+        </tr>
+        <tr>
+            <td>Alojamiento</td>
+            <td>Hoteles 3-4 estrellas / Posadas con encanto</td>
+            <td>Hoteles 5 estrellas / Villas privadas / Resorts de lujo</td>
+        </tr>
+        <tr>
+            <td>Alimentación</td>
+            <td>Desayunos incluidos y recomendaciones locales</td>
+            <td>Pensión completa / Cenas gourmet privadas</td>
+        </tr>
+        <tr>
+            <td>Transporte</td>
+            <td>Traslados grupales en vans modernas</td>
+            <td>Traslados privados VIP y vuelos charter opcionales</td>
+        </tr>
+        <tr>
+            <td>Guía</td>
+            <td>Guía local certificado por grupo</td>
+            <td>Concierge privado 24/7 y guías bilingües exclusivos</td>
+        </tr>
+    </table>
+    """, unsafe_allow_html=True)
+
     # LÍNEA ESTÁNDAR
     st.markdown("## LÍNEA ESTÁNDAR: Conexión Auténtica")
     st.write("Diseñada para viajeros que buscan comodidad, seguridad y vivir el destino de forma real.")
@@ -418,18 +447,21 @@ with tab_info_blog:
         st.write("📞 WhatsApp: +57 324 373 1661")
         st.write("✉️ Correo: veronicaarangopedrozo@gmail.com")
         
-        # Mapa Simulado de Zonas
         st.markdown("#### Nuestras Zonas de Cobertura")
         st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mapa_de_Colombia_%28regiones_naturales%29.svg/1200px-Mapa_de_Colombia_%28regiones_naturales%29.svg.png", caption="Operamos en toda la Costa Caribe y Pacífico", width=250)
 
     st.markdown("<br><hr>", unsafe_allow_html=True)
     st.markdown("### Preguntas Frecuentes (FAQ)")
     
+    # Se restauran y corrigen las preguntas frecuentes
     faq_items = [
-        ("1. ¿Qué incluye el seguro?", "Cobertura para accidentes y enfermedades repentinas."),
-        ("2. ¿Puedo cambiar la fecha?", "Sí, hasta 15 días antes del viaje."),
-        ("3. ¿Métodos de pago?", "PSE, Tarjetas de Crédito y Transferencias."),
-        ("4. ¿Vouchers?", "Digitales vía WhatsApp y Correo 48h tras el pago.")
+        ("¿Con qué anticipación debo reservar mi tour?", "Recomendamos reservar con al menos 30 días de antelación para asegurar disponibilidad, especialmente en temporada alta."),
+        ("¿Qué documentos necesito para viajar?", "Si eres nacional, solo tu cédula de ciudadanía. Extranjeros requieren pasaporte vigente."),
+        ("¿Los planes incluyen seguro médico?", "Sí, todos nuestros planes cuentan con asistencia médica integral durante el viaje."),
+        ("¿Puedo personalizar un tour para mi grupo?", "¡Claro! Nuestra especialidad es diseñar experiencias a la medida de tus necesidades."),
+        ("¿Cuáles son los métodos de pago?", "Aceptamos PSE, tarjetas de crédito y transferencias bancarias directas."),
+        ("¿Se incluye los tiquetes aéreos?", "Nuestros precios base no los incluyen, pero podemos gestionarlos por ti como un servicio adicional."),
+        ("¿Políticas de reembolso por cancelación?", "Contamos con políticas flexibles. Consulta los términos específicos según el paquete elegido.")
     ]
     
     for q, a in faq_items:
@@ -442,5 +474,3 @@ st.markdown("""
          📲 Hablar con un Asesor
     </a>
     """, unsafe_allow_html=True)
-
-
