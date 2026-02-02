@@ -7,74 +7,135 @@ st.set_page_config(
     page_icon="✈️"
 )
 
-# 2. ESTILOS CSS
+# 2. ESTILOS CSS AVANZADOS (Eliminando recuadros y mejorando estética)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&display=swap');
 
+    /* Fondo general limpio */
+    .main {
+        background-color: #FFFFFF;
+    }
+    
     html, body, [class*="st-emotion-cache"] {
         background-color: #FFFFFF;
         font-family: 'Poppins', sans-serif;
         color: #333333;
     }
 
+    /* Barra superior de contacto */
     .top-bar {
         background-color: #8B4513;
         color: white;
-        padding: 8px 50px;
+        padding: 10px 60px;
         display: flex;
         justify-content: space-between;
-        font-size: 13px;
+        font-size: 14px;
+        font-weight: 300;
     }
 
+    /* Hero Section - Inspirado en Protours */
     .hero-section {
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200');
+        background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400');
         background-size: cover;
         background-position: center;
-        height: 450px;
+        height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         text-align: center;
         flex-direction: column;
-        border-radius: 0 0 40px 40px;
-        margin-bottom: 30px;
+        border-radius: 0 0 50px 50px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
+    /* Estilo de Tarjetas de Paquetes (Sin recuadros feos) */
+    .package-card {
+        background: white;
+        padding: 0px;
+        border-radius: 20px;
+        transition: 0.3s;
+        text-align: center;
+    }
+    
+    .package-description {
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+        padding: 10px;
+        background: transparent !important;
+    }
+
+    /* Botones personalizados */
     .stButton>button {
         background-color: #C0392B !important;
         color: white !important;
-        border-radius: 20px !important;
+        border-radius: 30px !important;
         border: none !important;
-        transition: 0.3s !important;
+        padding: 8px 25px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        transition: 0.4s !important;
+        box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2) !important;
     }
 
     .stButton>button:hover {
-        background-color: #D35400 !important;
-        transform: translateY(-2px);
+        background-color: #8B4513 !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15) !important;
     }
 
+    /* WhatsApp Flotante */
     .whatsapp-float {
         position: fixed;
-        bottom: 25px;
-        right: 25px;
+        bottom: 30px;
+        right: 30px;
         background-color: #25d366;
         color: white;
-        padding: 15px 25px;
+        padding: 15px 30px;
         border-radius: 50px;
         text-decoration: none;
-        z-index: 100;
-        font-weight: bold;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+        font-weight: 600;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        transition: 0.3s;
+    }
+    
+    .whatsapp-float:hover {
+        transform: scale(1.05);
+        color: white;
     }
 
-    .package-card {
-        background-color: #FDFCF0;
-        padding: 20px;
+    /* Tabs (Menú de navegación) */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 50px;
+        justify-content: center;
+        background-color: transparent;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        height: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        color: #8B4513;
+        border-bottom: 2px solid transparent;
+    }
+
+    .stTabs [data-baseweb="tab"]:hover {
+        color: #C0392B;
+    }
+
+    /* Quitar bordes de imágenes */
+    img {
         border-radius: 15px;
-        border: 1px solid #E6D5B8;
-        margin-bottom: 15px;
+    }
+    
+    /* Eliminar el padding extra de las columnas de Streamlit */
+    [data-testid="column"] {
+        background-color: transparent !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -83,211 +144,139 @@ st.markdown("""
 st.markdown("""
     <div class="top-bar">
         <div>📞 +57 324 373 1661 | ✉️ veronicaarangopedrozo@gmail.com</div>
-        <div>📍 Medellín| Colombia </div>
+        <div>📍 Bahía Solano | Cartagena | Nuquí | San Andrés | Santa Marta</div>
     </div>
     """, unsafe_allow_html=True)
 
-# 4. LOGO
-col_logo, _ = st.columns([1, 4])
+# 4. HEADER CON LOGO
+col_logo, _ = st.columns([1, 3])
 with col_logo:
-    # Nuevo link del logo corregido
-    st.image("https://i.ibb.co/ds6F7b72/ve.png", width=220)
+    # Logo oficial de Costa-Tour (limpio y sin recuadros)
+    st.image("https://i.ibb.co/ds6F7b72/ve.png", width=250)
 
-# 5. MENÚ DE NAVEGACIÓN
+# 5. NAVEGACIÓN
 tab_inicio, tab_tours, tab_formularios, tab_blog = st.tabs([
-    "CONÓCENOS", "NUESTROS TOURS", "FORMULARIOS", "BLOG & NOTICIAS"
+    "CONÓCENOS", "NUESTROS TOURS", "SERVICIOS", "BLOG"
 ])
 
 # --- SECCIÓN: CONÓCENOS ---
 with tab_inicio:
     st.markdown("""
         <div class="hero-section">
-            <h1 style='color: white !important; font-size: 55px;'>Costa-Tour</h1>
-            <p style='font-size: 22px; font-family: "Lora", serif;'>Nuestra prioridad no es el destino, es tu experiencia.</p>
+            <h1 style='color: white !important; font-size: 65px; font-family: "Lora", serif; margin-bottom: 10px;'>Costa-Tour</h1>
+            <p style='font-size: 24px; font-style: italic; font-weight: 300;'>Nuestra prioridad no es el destino, es tu experiencia.</p>
         </div>
         """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Conócenos")
-        st.write("""
-        En **Costa-Tour**, entendemos que el lujo y la comodidad no dependen del lugar donde te encuentres, 
-        sino del servicio que recibes. Nos dedicamos a conectar a viajeros nacionales y extranjeros con 
-        los rincones más hermosos de Colombia, garantizando estándares de calidad excepcionales.
-        
-        Nuestros destinos incluyen la magia del Caribe y la mística del Pacífico, pero lo que realmente 
-        nos diferencia es el cuidado en cada detalle de nuestros paquetes Premium y Estándar.
-        """)
-    with col2:
-        st.image("https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=800", caption="Experiencias Costa-Tour")
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        st.markdown("<h2 style='color: #8B4513; font-family: \"Lora\", serif;'>Conócenos</h2>", unsafe_allow_html=True)
+        st.markdown("""
+        <p style='text-align: justify; font-size: 16px; line-height: 1.8;'>
+        En <b>Costa-Tour</b>, redefinimos el concepto de viaje. Creemos firmemente que el lujo no es un lugar, 
+        es la calidad del servicio que te acompaña en el camino. Nos especializamos en conectar el corazón de 
+        Colombia con el mundo, ofreciendo experiencias exclusivas tanto en la Costa Caribe como en el Pacífico Colombiano.
+        <br><br>
+        Nuestro enfoque se centra en la personalización. No importa si eliges la selva profunda de Bahía Solano o el 
+        brillo de Cartagena; lo que garantiza tu satisfacción es el nivel de paquete que selecciones, diseñado 
+        cuidadosamente para superar cualquier expectativa.
+        </p>
+        """, unsafe_allow_html=True)
+    with c2:
+        st.image("https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=800")
 
 # --- SECCIÓN: TOURS ---
 with tab_tours:
-    st.title("Portafolio de Paquetes Turísticos")
-    st.info("💡 Nota: En Costa-Tour, el paquete define el nivel de servicio y exclusividad, independientemente del destino elegido.")
+    st.markdown("<h1 style='text-align: center; font-family: \"Lora\", serif; color: #8B4513;'>Portafolio de Experiencias</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #666;'>La excelencia de tu viaje depende del servicio contratado, disponible en todos nuestros destinos.</p>", unsafe_allow_html=True)
     
-    # --- CATEGORÍA PREMIUM ---
-    st.markdown("## Categoría Premium")
-    st.write("Experiencias de élite con vuelos privados, hoteles de autor y atención bilingüe 24/7.")
+    # --- PREMIUM ---
+    st.markdown("<h2 style='border-left: 5px solid #C0392B; padding-left: 15px;'>⭐ Categoría Premium</h2>", unsafe_allow_html=True)
+    st.write("Servicios VIP: Vuelos privados, suites de lujo, atención bilingüe y gastronomía gourmet.")
     
     cp1, cp2, cp3, cp4 = st.columns(4)
     
-    # Paquete 1: Caribe Mágico
-    with cp1:
-        st.image("https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400")
-        st.subheader("Caribe Mágico")
-        if f"show_p1" not in st.session_state: st.session_state.show_p1 = False
-        
-        if not st.session_state.show_p1:
-            if st.button("Ver más", key="btn_p1"):
-                st.session_state.show_p1 = True
-                st.rerun()
-        else:
-            st.write("""
-            **Servicios VIP:**
-            - Alojamiento en Suites presidenciales.
-            - Traslados en yate privado.
-            - Menú de degustación con chef privado.
-            - Acceso exclusivo a playas vírgenes.
-            """)
-            if st.button("Ver menos", key="btn_p1_less"):
-                st.session_state.show_p1 = False
-                st.rerun()
+    paquetes_premium = [
+        ("Caribe Mágico", "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400", "p1", 
+         "Suite presidencial, traslados en yate privado, chef exclusivo y playas privadas."),
+        ("Pacífico Vivo", "https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=400", "p2", 
+         "Eco-lodges boutique, avistamiento privado de ballenas y spa ancestral incluido."),
+        ("Pacífico Místico", "https://images.unsplash.com/photo-1554357475-acce8d059b4b?w=400", "p3", 
+         "Retiros de bienestar, tours nocturnos VIP y fotografía profesional incluida."),
+        ("Sol Caribe", "https://images.unsplash.com/photo-1506929197327-fb877276303b?w=400", "p4", 
+         "Vuelos charter entre islas, club de playa privado y bar de bebidas premium.")
+    ]
 
-    # Paquete 2: Pacífico Vivo
-    with cp2:
-        st.image("https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=400")
-        st.subheader("Pacífico Vivo")
-        if f"show_p2" not in st.session_state: st.session_state.show_p2 = False
-        
-        if not st.session_state.show_p2:
-            if st.button("Ver más", key="btn_p2"):
-                st.session_state.show_p2 = True
-                st.rerun()
-        else:
-            st.write("""
-            **Inmersión Total:**
-            - Eco-lodges boutique sostenibles.
-            - Avistamiento de ballenas privado.
-            - Expediciones con biólogos expertos.
-            - Spa ancestral incluido.
-            """)
-            if st.button("Ver menos", key="btn_p2_less"):
-                st.session_state.show_p2 = False
-                st.rerun()
+    cols_p = [cp1, cp2, cp3, cp4]
+    for i, (nombre, img, key, desc) in enumerate(paquetes_premium):
+        with cols_p[i]:
+            st.image(img)
+            st.markdown(f"<h4 style='text-align: center; margin-top: 10px;'>{nombre}</h4>", unsafe_allow_html=True)
+            
+            if f"show_{key}" not in st.session_state: st.session_state[f"show_{key}"] = False
+            
+            if not st.session_state[f"show_{key}"]:
+                if st.button("Ver más detalles", key=f"btn_{key}"):
+                    st.session_state[f"show_{key}"] = True
+                    st.rerun()
+            else:
+                st.markdown(f"<div class='package-description'>{desc}</div>", unsafe_allow_html=True)
+                if st.button("Ver menos", key=f"btn_{key}_less"):
+                    st.session_state[f"show_{key}"] = False
+                    st.rerun()
 
-    # Paquete 3: Pacífico Místico
-    with cp3:
-        st.image("https://images.unsplash.com/photo-1554357475-acce8d059b4b?w=400")
-        st.subheader("Pacífico Místico")
-        if f"show_p3" not in st.session_state: st.session_state.show_p3 = False
-        
-        if not st.session_state.show_p3:
-            if st.button("Ver más", key="btn_p3"):
-                st.session_state.show_p3 = True
-                st.rerun()
-        else:
-            st.write("""
-            **Experiencia Espiritual:**
-            - Retiros de bienestar en la selva.
-            - Tours nocturnos de bioluminiscencia.
-            - Fotografía profesional incluida.
-            - Servicio de concierge bilingüe.
-            """)
-            if st.button("Ver menos", key="btn_p3_less"):
-                st.session_state.show_p3 = False
-                st.rerun()
+    st.markdown("<br><hr><br>", unsafe_allow_html=True)
 
-    # Paquete 4: Sol Caribe
-    with cp4:
-        st.image("https://images.unsplash.com/photo-1506929197327-fb877276303b?w=400")
-        st.subheader("Sol Caribe")
-        if f"show_p4" not in st.session_state: st.session_state.show_p4 = False
-        
-        if not st.session_state.show_p4:
-            if st.button("Ver más", key="btn_p4"):
-                st.session_state.show_p4 = True
-                st.rerun()
-        else:
-            st.write("""
-            **Lujo Tropical:**
-            - Club de playa privado.
-            - Vuelos charter entre islas.
-            - Equipamiento de deportes náuticos.
-            - Open bar de bebidas Premium.
-            """)
-            if st.button("Ver menos", key="btn_p4_less"):
-                st.session_state.show_p4 = False
-                st.rerun()
-
-    st.divider()
-
-    # --- CATEGORÍA ESTÁNDAR ---
-    st.markdown("## Categoría Estándar")
-    st.write("La mejor relación calidad-precio para aventureros que aman la autenticidad.")
+    # --- ESTÁNDAR ---
+    st.markdown("<h2 style='border-left: 5px solid #8B4513; padding-left: 15px;'>🚢 Categoría Estándar</h2>", unsafe_allow_html=True)
+    st.write("Calidad y aventura garantizada al mejor precio del mercado.")
     
     ce1, ce2, ce3, ce4 = st.columns(4)
-    
-    # Estándar 1
-    with ce1:
-        st.image("https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=400")
-        st.subheader("Nuestra Costa")
-        if "show_e1" not in st.session_state: st.session_state.show_e1 = False
-        if not st.session_state.show_e1:
-            if st.button("Ver más", key="btn_e1"): st.session_state.show_e1 = True; st.rerun()
-        else:
-            st.write("Hoteles 3-4 estrellas, transporte cómodo y desayunos incluidos.")
-            if st.button("Ver menos", key="btn_e1_less"): st.session_state.show_e1 = False; st.rerun()
+    paquetes_estandar = [
+        ("Nuestra Costa", "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=400", "e1", 
+         "Hoteles 3-4 estrellas seleccionados, transporte puntual y tours grupales."),
+        ("Marea", "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=400", "e2", 
+         "Experiencias culturales, hidratación constante y guías locales expertos."),
+        ("Ritmo Caribe", "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400", "e3", 
+         "Plan familiar con cenas temáticas y actividades recreativas incluidas."),
+        ("Ruta Marina", "https://images.unsplash.com/photo-1590001158193-790179980bd3?w=400", "e4", 
+         "Exploración de arrecifes, lanchas seguras y equipo de snorkel completo.")
+    ]
 
-    # Estándar 2
-    with ce2:
-        st.image("https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=400")
-        st.subheader("Marea")
-        if "show_e2" not in st.session_state: st.session_state.show_e2 = False
-        if not st.session_state.show_e2:
-            if st.button("Ver más", key="btn_e2"): st.session_state.show_e2 = True; st.rerun()
-        else:
-            st.write("Tours grupales guiados, hidratación y actividades culturales.")
-            if st.button("Ver menos", key="btn_e2_less"): st.session_state.show_e2 = False; st.rerun()
-
-    # Estándar 3
-    with ce3:
-        st.image("https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400")
-        st.subheader("Ritmo Caribe")
-        if "show_e3" not in st.session_state: st.session_state.show_e3 = False
-        if not st.session_state.show_e3:
-            if st.button("Ver más", key="btn_e3"): st.session_state.show_e3 = True; st.rerun()
-        else:
-            st.write("Ideal para familias. Incluye cenas temáticas y guías locales.")
-            if st.button("Ver menos", key="btn_e3_less"): st.session_state.show_e3 = False; st.rerun()
-
-    # Estándar 4 - RUTA MARINA
-    with ce4:
-        st.image("https://images.unsplash.com/photo-1590001158193-790179980bd3?w=400")
-        st.subheader("Ruta Marina")
-        if "show_e4" not in st.session_state: st.session_state.show_e4 = False
-        if not st.session_state.show_e4:
-            if st.button("Ver más", key="btn_e4"): st.session_state.show_e4 = True; st.rerun()
-        else:
-            st.write("Exploración costera, traslados en lanchas seguras y equipo de snorkel.")
-            if st.button("Ver menos", key="btn_e4_less"): st.session_state.show_e4 = False; st.rerun()
+    cols_e = [ce1, ce2, ce3, ce4]
+    for i, (nombre, img, key, desc) in enumerate(paquetes_estandar):
+        with cols_e[i]:
+            st.image(img)
+            st.markdown(f"<h4 style='text-align: center; margin-top: 10px;'>{nombre}</h4>", unsafe_allow_html=True)
+            
+            if f"show_{key}" not in st.session_state: st.session_state[f"show_{key}"] = False
+            
+            if not st.session_state[f"show_{key}"]:
+                if st.button("Ver más", key=f"btn_{key}"):
+                    st.session_state[f"show_{key}"] = True
+                    st.rerun()
+            else:
+                st.markdown(f"<div class='package-description'>{desc}</div>", unsafe_allow_html=True)
+                if st.button("Ver menos", key=f"btn_{key}_less"):
+                    st.session_state[f"show_{key}"] = False
+                    st.rerun()
 
 # --- SECCIÓN: FORMULARIOS ---
 with tab_formularios:
-    st.subheader("Servicios y Atención")
-    st.link_button("Abrir Formulario de Quejas y Reclamos", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u&route=shorturl")
+    st.markdown("<h2 style='color: #8B4513; font-family: \"Lora\", serif;'>Atención al Cliente</h2>", unsafe_allow_html=True)
+    st.write("Para Costa-Tour, tu seguridad y satisfacción son la base de nuestro negocio.")
+    st.link_button("Radicar Queja o Reclamo (PQR)", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u&route=shorturl")
 
 # --- SECCIÓN: BLOG ---
 with tab_blog:
-    st.subheader("Noticias y Recomendaciones")
-    st.markdown("### ¿Planeando tu próximo viaje?")
-    st.write("Visita nuestro blog externo para encontrar tips exclusivos sobre equipaje, clima y cultura.")
-    st.link_button("Ir al Blog Oficial", "https://tipsdeviajeparalacostacolombiana.blogspot.com/p/tips-de-viaje-para-la-costa-caribe-y-la.html")
+    st.markdown("<h2 style='color: #8B4513; font-family: \"Lora\", serif;'>Costa-Tour Blog</h2>", unsafe_allow_html=True)
+    st.image("https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=1200", caption="Descubre los secretos de Colombia")
+    st.write("Aprende sobre climas, qué empacar y las mejores fechas para viajar en nuestro blog oficial.")
+    st.link_button("Explorar Blog", "https://tipsdeviajeparalacostacolombiana.blogspot.com/p/tips-de-viaje-para-la-costa-caribe-y-la.html")
 
 # 6. WHATSAPP FLOTANTE
 st.markdown("""
-    <a href="https://wa.me/573243731661?text=Hola%20Costa-Tour!%20Quiero%20información%20sobre%20sus%20planes." class="whatsapp-float" target="_blank">
-        💬 ¡Chatea con nosotros!
+    <a href="https://wa.me/573243731661?text=Hola%20Costa-Tour!%20Deseo%20información%20sobre%20un%20paquete%20Premium." class="whatsapp-float" target="_blank">
+        💬 ¡Reserva con un Asesor!
     </a>
     """, unsafe_allow_html=True)
-
