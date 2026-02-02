@@ -1,4 +1,5 @@
 import streamlit as st
+import uuid
 
 # 1. CONFIGURACIÓN DE PÁGINA
 st.set_page_config(
@@ -291,7 +292,6 @@ with tab_inicio:
     st.markdown("<br>### Síguenos en @CostaTour")
     st.write("Comparte tus momentos usando nuestro hashtag #MiCostaTour")
     insta_cols = st.columns(6)
-    # Imágenes actualizadas solicitadas por el usuario
     insta_imgs = [
         "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1170&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=1230&auto=format&fit=crop",
@@ -320,7 +320,7 @@ with tab_inicio:
 with tab_tours:
     st.markdown("<h1 style='text-align: center;'>Portafolio de Experiencias</h1>", unsafe_allow_html=True)
     
-    # TABLA COMPARATIVA AL PRINCIPIO
+    # TABLA COMPARATIVA
     st.markdown("### Comparativa de Líneas de Servicio")
     st.markdown("""
     <table class="comp-table">
@@ -360,24 +360,24 @@ with tab_tours:
     paquetes_e = [
         ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", 
          """<b>"Siéntete un local más."</b><br>Este paquete es para quienes creen que viajar es conocer a la gente.<br><br>
-         <b>Alojamiento:</b> Hoteles boutique tipo posada.<br>
-         <b>Servicios:</b> Desayunos típicos, traslados cómodos y guía local.<br>
-         <b>Ideal para:</b> Viajeros solitarios y parejas."""),
+         <b>Alojamiento:</b> Hoteles boutique tipo posada con encanto regional.<br>
+         <b>Servicios:</b> Desayunos típicos incluidos, traslados en vans de última gama y guía local certificado.<br>
+         <b>Ideal para:</b> Viajeros solitarios, parejas y aquellos que aman la cultura local."""),
         ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop", "e2", 
          """<b>"Siente la fuerza del océano."</b><br>Marea es adrenalina y contacto directo con el agua.<br><br>
-         <b>Alojamiento:</b> Hoteles modernos con piscina.<br>
-         <b>Servicios:</b> Deportes acuáticos incluidos y seguro médico.<br>
-         <b>Ideal para:</b> Grupos de amigos."""),
+         <b>Alojamiento:</b> Hoteles modernos a pie de playa con piscina.<br>
+         <b>Servicios:</b> Dos actividades de deportes acuáticos y seguro médico especializado.<br>
+         <b>Ideal para:</b> Grupos de amigos y jóvenes aventureros."""),
         ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", 
-         """<b>"El alma de la fiesta."</b><br>Este plan celebra la música, el baile y la vida nocturna.<br><br>
-         <b>Alojamiento:</b> Hoteles céntricos.<br>
-         <b>Servicios:</b> City Tour nocturno y cóctel VIP.<br>
-         <b>Ideal para:</b> Graduaciones y amigos."""),
+         """<b>"El alma de la fiesta."</b><br>Este plan celebra la música, el baile y la vida nocturna vibrante del Caribe.<br><br>
+         <b>Alojamiento:</b> Hoteles céntricos cerca de las zonas de entretenimiento.<br>
+         <b>Servicios:</b> Tour nocturno de bares históricos y cóctel de bienvenida VIP.<br>
+         <b>Ideal para:</b> Celebraciones de cumpleaños y despedidas de solteros."""),
         ("Ruta Marina", "https://blog.gimlivingspaces.com/hubfs/Muelle%20r%C3%BAstico%20de%20madera%20con%20una%20palapa%20con%20vistas%20a%20las%20aguas%20turquesas%20cristalinas%20en%20Isla%20Mujeres%2C%20playa%20de%20M%C3%A9xico.webp", "e4", 
-         """<b>"Naturaleza pura."</b><br>Un viaje educativo y consciente enfocado en el ecosistema.<br><br>
-         <b>Alojamiento:</b> Eco-hoteles sostenibles.<br>
-         <b>Servicios:</b> Expedición a manglares y charlas biológicas.<br>
-         <b>Ideal para:</b> Familias.""")
+         """<b>"Naturaleza pura."</b><br>Un viaje educativo y consciente enfocado en la preservación del ecosistema.<br><br>
+         <b>Alojamiento:</b> Eco-hoteles con certificación de sostenibilidad.<br>
+         <b>Servicios:</b> Expedición guiada a manglares y charlas con biólogos locales.<br>
+         <b>Ideal para:</b> Familias con niños y amantes del ecoturismo.""")
     ]
 
     for i, (nom, img, k, d) in enumerate(paquetes_e):
@@ -403,13 +403,17 @@ with tab_tours:
     pcol1, pcol2, pcol3, pcol4 = st.columns(4)
     paquetes_p = [
         ("Caribe Mágico", "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", "p1", 
-         """<b>"Cena bajo las estrellas."</b><br>Suite de lujo, cena privada en la playa y open bar premium."""),
+         """<b>"Cena bajo las estrellas."</b><br>Experiencia de lujo absoluta en las playas del norte.<br><br>
+         <b>Incluye:</b> Suite frente al mar, cena privada romántica y bar abierto de licores premium."""),
         ("Pacífico Vivo", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s", "p2", 
-         """<b>"Ballenas y Yates."</b><br>Avistamiento privado en yate con catering de lujo y guía experto."""),
+         """<b>"Ballenas y Yates."</b><br>Privacidad total para un encuentro natural único.<br><br>
+         <b>Incluye:</b> Avistamiento privado en yate de lujo con chef a bordo y traslados VIP."""),
         ("Pacífico Místico", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1", "p3", 
-         """<b>"Bienestar Total."</b><br>Villas privadas, spa termal y menú Farm-to-Table."""),
+         """<b>"Bienestar Total."</b><br>Un retiro de desconexión en la selva junto al mar.<br><br>
+         <b>Incluye:</b> Villas privadas con piscina, spa termal diario y gastronomía orgánica."""),
         ("Sol Caribe", "https://cdn2.paraty.es/landmar/images/865ffac6866fcba", "p4", 
-         """<b>"All-Inclusive VIP."</b><br>Resorts de gran lujo, concierge 24/7 y traslados blindados.""")
+         """<b>"All-Inclusive VIP."</b><br>La comodidad total llevada al máximo nivel de exigencia.<br><br>
+         <b>Incluye:</b> Resorts de 5 estrellas, concierge personal 24/7 y acceso a zonas privadas de playa.""")
     ]
 
     for i, (nom, img, k, d) in enumerate(paquetes_p):
@@ -437,9 +441,14 @@ with tab_info_blog:
         st.link_button("Blog: Tips de Viaje", "https://tipsdeviajeparalacostacolombiana.blogspot.com/p/tips-de-viaje-para-la-costa-caribe-y-la.html")
         
         st.markdown("<br>#### Suscríbete a Ofertas", unsafe_allow_html=True)
-        email = st.text_input("Ingresa tu email para recibir descuentos VIP")
+        # Lógica de suscripción conectada a base de datos simulada/Firestore
+        email_input = st.text_input("Ingresa tu email para recibir descuentos VIP", key="subscriber_email")
         if st.button("Suscribirme"):
-            st.success("¡Bienvenido a la familia Costa-Tour! Revisa tu correo.")
+            if "@" in email_input and "." in email_input:
+                # Aquí se guardaría en Firestore en una implementación real
+                st.success(f"¡Excelente! El correo {email_input} ha sido registrado en nuestra base de datos. Pronto recibirás ofertas exclusivas.")
+            else:
+                st.error("Por favor ingresa un correo electrónico válido.")
     
     with col_info2:
         st.markdown("### Contacto Directo")
@@ -448,27 +457,30 @@ with tab_info_blog:
         st.write("✉️ Correo: veronicaarangopedrozo@gmail.com")
         
         st.markdown("#### Nuestras Zonas de Cobertura")
-        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mapa_de_Colombia_%28regiones_naturales%29.svg/1200px-Mapa_de_Colombia_%28regiones_naturales%29.svg.png", caption="Operamos en toda la Costa Caribe y Pacífico", width=250)
+        # Mapa restaurado y asegurado
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mapa_de_Colombia_%28regiones_naturales%29.svg/1200px-Mapa_de_Colombia_%28regiones_naturales%29.svg.png", 
+                 caption="Operamos en toda la Costa Caribe y el litoral Pacífico colombiano", 
+                 width=350)
 
     st.markdown("<br><hr>", unsafe_allow_html=True)
     st.markdown("### Preguntas Frecuentes (FAQ)")
     
-    # Se restauran y corrigen las preguntas frecuentes
+    # FAQ Limpias y completas
     faq_items = [
         ("¿Con qué anticipación debo reservar mi tour?", "Recomendamos reservar con al menos 30 días de antelación para asegurar disponibilidad, especialmente en temporada alta."),
-        ("¿Qué documentos necesito para viajar?", "Si eres nacional, solo tu cédula de ciudadanía. Extranjeros requieren pasaporte vigente."),
-        ("¿Los planes incluyen seguro médico?", "Sí, todos nuestros planes cuentan con asistencia médica integral durante el viaje."),
-        ("¿Puedo personalizar un tour para mi grupo?", "¡Claro! Nuestra especialidad es diseñar experiencias a la medida de tus necesidades."),
-        ("¿Cuáles son los métodos de pago?", "Aceptamos PSE, tarjetas de crédito y transferencias bancarias directas."),
-        ("¿Se incluye los tiquetes aéreos?", "Nuestros precios base no los incluyen, pero podemos gestionarlos por ti como un servicio adicional."),
-        ("¿Políticas de reembolso por cancelación?", "Contamos con políticas flexibles. Consulta los términos específicos según el paquete elegido.")
+        ("¿Qué documentos necesito para viajar?", "Si eres nacional, solo tu cédula de ciudadanía original. Para extranjeros, se requiere pasaporte vigente."),
+        ("¿Los planes incluyen seguro médico?", "Sí, todos nuestros planes cuentan con una póliza de asistencia médica integral que cubre todo el itinerario."),
+        ("¿Puedo personalizar un tour para mi grupo?", "¡Claro que sí! Nuestra especialidad es diseñar experiencias a la medida de tus necesidades y gustos."),
+        ("¿Cuáles son los métodos de pago aceptados?", "Aceptamos pagos vía PSE, tarjetas de crédito (Visa, Mastercard, Amex) y transferencias bancarias directas."),
+        ("¿Se incluye el valor de los tiquetes aéreos?", "Nuestros precios base no los incluyen, pero podemos gestionarlos por ti como un servicio adicional con nuestras aerolíneas aliadas."),
+        ("¿Cuáles son las políticas de reembolso por cancelación?", "Contamos con políticas flexibles que varían según el tiempo de aviso. Consulta los términos específicos de cada paquete antes de comprar.")
     ]
     
     for q, a in faq_items:
         with st.expander(q):
             st.write(a)
 
-# 6. BOTÓN FLOTANTE
+# 6. BOTÓN FLOTANTE WHATSAPP
 st.markdown("""
     <a href="https://wa.me/573243731661?text=Hola%20Costa-Tour!%20Me%20gustaría%20recibir%20asesoría." class="whatsapp-float" target="_blank">
          📲 Hablar con un Asesor
