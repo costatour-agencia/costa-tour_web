@@ -165,6 +165,15 @@ st.markdown("""
         color: #F1C40F;
         font-size: 20px;
     }
+
+    /* Galería Automática */
+    .fade-in {
+        animation: fadeIn 1.5s;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -209,32 +218,39 @@ with tab_inicio:
     - **Excelencia en el Detalle:** Porque sabemos que lo pequeño hace la diferencia.
     """)
     
-    # --- GALERÍA DINÁMICA DE DESTINOS ---
+    # --- GALERÍA AUTOMÁTICA DE DESTINOS ---
     st.markdown("### Destinos que te esperan")
-    destinos_imgs = [
-        "https://www.vivecolombia.es/rep/37ce/imagenes/1309902/9/cabo-san-juan-tayronajpg.jpg",
-        "https://www.vivecolombia.es/rep/0c5a/imagenes/1310002/9/isla-majagua-archipielago-de-islas-del-rosariojpg.jpg",
-        "https://www.vivecolombia.es/rep/91cf/imagenes/1309802/9/cabo-de-la-vela-guajirajpg.jpg",
-        "https://www.vivecolombia.es/rep/3d52/imagenes/1310202/9/playa-nuqui-chocojpg.jpg",
-        "https://plus.unsplash.com/premium_photo-1664116928361-2972cf5d6848?q=80&w=687&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1575388107541-520c8c3e48ac?q=80&w=1170&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1625505825515-c2f8db4a29b5?q=80&w=1230&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1594342436424-dda50df715d9?q=80&w=1171&auto=format&fit=crop"
+    
+    destinos_info = [
+        {"url": "https://www.vivecolombia.es/rep/37ce/imagenes/1309902/9/cabo-san-juan-tayronajpg.jpg", "caption": "Cabo San Juan, Parque Tayrona"},
+        {"url": "https://www.vivecolombia.es/rep/0c5a/imagenes/1310002/9/isla-majagua-archipielago-de-islas-del-rosariojpg.jpg", "caption": "Islas del Rosario, Cartagena"},
+        {"url": "https://www.vivecolombia.es/rep/91cf/imagenes/1309802/9/cabo-de-la-vela-guajirajpg.jpg", "caption": "Cabo de la Vela, La Guajira"},
+        {"url": "https://www.vivecolombia.es/rep/3d52/imagenes/1310202/9/playa-nuqui-chocojpg.jpg", "caption": "Playa Nuquí, Chocó"},
+        {"url": "https://images.unsplash.com/photo-1575388107541-520c8c3e48ac?q=80&w=1170&auto=format&fit=crop", "caption": "Atardeceres en el Caribe"},
+        {"url": "https://images.unsplash.com/photo-1625505825515-c2f8db4a29b5?q=80&w=1230&auto=format&fit=crop", "caption": "Aguas cristalinas de San Andrés"}
     ]
+
+    # Lógica de cambio automático con st.empty para evitar recargas bruscas
+    if 'auto_idx' not in st.session_state:
+        st.session_state.auto_idx = 0
+
+    placeholder = st.empty()
     
-    if 'img_idx' not in st.session_state:
-        st.session_state.img_idx = 0
-    
-    st.image(destinos_imgs[st.session_state.img_idx], use_container_width=True, caption="Nuestros paraísos seleccionados")
-    
-    col_prev, col_next = st.columns([1, 1])
-    with col_prev:
-        if st.button("Anterior"):
-            st.session_state.img_idx = (st.session_state.img_idx - 1) % len(destinos_imgs)
+    with placeholder.container():
+        current_img = destinos_info[st.session_state.auto_idx]
+        st.markdown(f'<div class="fade-in">', unsafe_allow_html=True)
+        st.image(current_img["url"], use_container_width=True, caption=current_img["caption"])
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # Controles manuales por si el usuario quiere saltar
+    col_c1, col_c2, col_c3 = st.columns([1, 2, 1])
+    with col_c1:
+        if st.button("⬅️ Anterior"):
+            st.session_state.auto_idx = (st.session_state.auto_idx - 1) % len(destinos_info)
             st.rerun()
-    with col_next:
-        if st.button("Siguiente"):
-            st.session_state.img_idx = (st.session_state.img_idx + 1) % len(destinos_imgs)
+    with col_c3:
+        if st.button("Siguiente ➡️"):
+            st.session_state.auto_idx = (st.session_state.auto_idx + 1) % len(destinos_info)
             st.rerun()
 
     # --- SECCIÓN DE RESEÑAS ---
@@ -292,7 +308,6 @@ with tab_tours:
             st.markdown(f"<h4 style='text-align: center;'>{nom}</h4>", unsafe_allow_html=True)
             if f"st_{k}" not in st.session_state: st.session_state[f"st_{k}"] = False
             
-            # Botón inteligente para abrir/cerrar
             label = "Cerrar" if st.session_state[f"st_{k}"] else "Ver Plan"
             if st.button(label, key=f"btn_{k}"):
                 st.session_state[f"st_{k}"] = not st.session_state[f"st_{k}"]
