@@ -230,19 +230,19 @@ with tab_tours:
     
     cp1, cp2, cp3, cp4 = st.columns(4)
     paquetes_premium = [
-        ("Caribe Mágico", "https://images.unsplash.com/photo-1545127398-14699f92334b?w=400", "p1", 
+        ("Caribe Mágico", "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", "p1", 
          "<b>Donde el tiempo se detiene.</b><br>Descanso absoluto en escenarios de película.<br><br><b>Alojamiento:</b> Suites con vista al mar y jacuzzi.<br><b>Servicio VIP:</b> Cena privada de 3 pasos en la playa.<br><b>Incluye:</b> Open bar premium y zonas privadas."),
-        ("Pacífico Vivo", "https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=400", "p2", 
+        ("Pacífico Vivo", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s", "p2", 
          "<b>La majestad de la vida salvaje.</b><br>Aventura de alto nivel con total confort.<br><br><b>Alojamiento:</b> Glamping de lujo o Eco-Lodges boutique.<br><b>Servicio VIP:</b> Avistamiento privado en yate con catering.<br><b>Incluye:</b> Guía experto bilingüe."),
-        ("Pacífico Místico", "https://images.unsplash.com/photo-1533719071182-0568d0ed4448?w=400", "p3", 
+        ("Pacífico Místico", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1", "p3", 
          "<b>Sanación para el alma.</b><br>Retiro de bienestar en lugares remotos y energéticos.<br><br><b>Alojamiento:</b> Villas privadas bioclimáticas.<br><b>Servicio VIP:</b> Spa termal y meditación privada.<br><b>Incluye:</b> Menú orgánico Farm to table."),
-        ("Sol Caribe", "https://images.unsplash.com/photo-1589394815804-964ed9be2eb3?w=400", "p4", 
+        ("Sol Caribe", "https://cdn2.paraty.es/landmar/images/865ffac6866fcba", "p4", 
          "<b>El privilegio del sol eterno.</b><br>El estándar más alto del turismo internacional.<br><br><b>Alojamiento:</b> Resorts All-Inclusive Premium.<br><b>Servicio VIP:</b> Concierge personal y transporte blindado.<br><b>Incluye:</b> Fast Pass y amenidades de lujo.")
     ]
 
     for i, (nombre, img, key, desc) in enumerate(paquetes_premium):
         with [cp1, cp2, cp3, cp4][i]:
-            st.image(img)
+            st.image(img, use_container_width=True)
             st.markdown(f"<h4 style='text-align: center;'>{nombre}</h4>", unsafe_allow_html=True)
             if f"show_{key}" not in st.session_state: st.session_state[f"show_{key}"] = False
             if not st.session_state[f"show_{key}"]:
@@ -259,19 +259,19 @@ with tab_tours:
     
     ce1, ce2, ce3, ce4 = st.columns(4)
     paquetes_estandar = [
-        ("Nuestra Costa", "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=400", "e1", 
+        ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", 
          "<b>Siéntete un local más.</b><br>Conoce el corazón de la cultura costera.<br><br><b>Alojamiento:</b> Posadas boutique con encanto.<br><b>Exp. destacada:</b> Clases de cocina tradicional.<br><b>Ideal para:</b> Parejas y viajeros solitarios."),
-        ("Marea", "https://images.unsplash.com/photo-1520116468816-95b69f847357?w=400", "e2", 
+        ("Marea", "https://miviajeporcolombia.com/wp-content/uploads/2019/05/las-playas-donde-banarse-en-cartagena.jpg", "e2", 
          "<b>Siente la fuerza del océano.</b><br>Adrenalina y contacto directo con el agua.<br><br><b>Alojamiento:</b> Hoteles modernos con piscina.<br><b>Exp. destacada:</b> Surf o Paddle Board.<br><b>Ideal para:</b> Grupos de amigos."),
-        ("Ritmo Caribe", "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400", "e3", 
+        ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", 
          "<b>El alma de la fiesta.</b><br>Celebra la música, el baile y la vida nocturna.<br><br><b>Alojamiento:</b> Céntrico cerca de zonas de ocio.<br><b>Exp. destacada:</b> City Tour nocturno VIP.<br><b>Ideal para:</b> Despedidas de solteros/as."),
-        ("Ruta Marina", "https://images.unsplash.com/photo-1590001158193-790179980bd3?w=400", "e4", 
+        ("Ruta Marina", "https://blog.gimlivingspaces.com/hubfs/Muelle%20r%C3%BAstico%20de%20madera%20con%20una%20palapa%20con%20vistas%20a%20las%20aguas%20turquesas%20cristalinas%20en%20Isla%20Mujeres%2C%20playa%20de%20M%C3%A9xico.webp", "e4", 
          "<b>Naturaleza pura.</b><br>Viaje educativo enfocado en la protección ambiental.<br><br><b>Alojamiento:</b> Eco-hoteles sostenibles.<br><b>Exp. destacada:</b> Expedición a manglares.<br><b>Ideal para:</b> Familias y fotógrafos.")
     ]
 
     for i, (nombre, img, key, desc) in enumerate(paquetes_estandar):
         with [ce1, ce2, ce3, ce4][i]:
-            st.image(img)
+            st.image(img, use_container_width=True)
             st.markdown(f"<h4 style='text-align: center;'>{nombre}</h4>", unsafe_allow_html=True)
             if f"show_{key}" not in st.session_state: st.session_state[f"show_{key}"] = False
             if not st.session_state[f"show_{key}"]:
