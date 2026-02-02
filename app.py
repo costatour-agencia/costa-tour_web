@@ -13,13 +13,6 @@ st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&display=swap');
 
-    /* Variables de color y fuentes */
-    :root {
-        --primary-red: #C0392B;
-        --dark-blue: #2C3E50;
-        --light-gray: #F8F9FA;
-    }
-
     .stApp { background-color: #FFFFFF !important; }
     
     html, body, [class*="st-"] {
@@ -35,22 +28,19 @@ st.markdown("""
         border: none !important;
         padding: 12px 24px !important;
         border-radius: 8px !important;
-        transition: all 0.3s ease;
         width: 100%;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
     
     .stButton > button:hover {
         background-color: #A93226 !important;
         box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2);
-        transform: translateY(-2px);
     }
 
-    /* Hero Section Impactante */
+    /* Hero Section */
     .hero-section {
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop');
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1544124499-58912cbddaad?q=80&w=2070&auto=format&fit=crop');
         background-size: cover;
         background-position: center;
         height: 450px;
@@ -62,7 +52,6 @@ st.markdown("""
         flex-direction: column;
         border-radius: 20px;
         margin-bottom: 50px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
     .hero-title {
@@ -70,34 +59,44 @@ st.markdown("""
         font-family: 'Lora', serif;
         font-size: 68px;
         font-weight: bold;
-        margin-bottom: 10px;
     }
 
-    /* Tarjetas de Información de Nuestra Esencia */
     .essence-card {
         background: #FFFFFF;
         padding: 40px;
         border-radius: 15px;
         border: 1px solid #F0F0F0;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.02);
         height: 100%;
         border-top: 4px solid #C0392B;
     }
 
     .section-title {
         text-align: center;
-        margin: 70px 0 40px 0;
+        margin: 60px 0 40px 0;
         color: #1A1A1A;
         font-size: 36px;
         font-family: 'Lora', serif;
         font-weight: bold;
     }
 
-    /* Tabla Comparativa */
-    [data-testid="stTable"] {
-        border-radius: 12px;
+    /* Tabla Profesional */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        border-radius: 8px;
         overflow: hidden;
-        border: 1px solid #EEE;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    .styled-table thead tr {
+        background-color: #2C3E50;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th, .styled-table td {
+        padding: 15px 20px;
+        border-bottom: 1px solid #dddddd;
     }
 
     /* WhatsApp Flotante */
@@ -116,22 +115,17 @@ st.markdown("""
         display: flex;
         align-items: center;
         gap: 12px;
-        transition: 0.3s;
-    }
-    
-    .whatsapp-float:hover {
-        transform: scale(1.05);
     }
 
-    /* Preguntas Frecuentes */
+    /* FAQ - Menos apiñado */
     .stExpander {
-        border: 1px solid #F0F0F0 !important;
-        border-radius: 10px !important;
-        margin-bottom: 12px !important;
-        background-color: #FCFCFC !important;
+        border: 1px solid #EEE !important;
+        border-radius: 12px !important;
+        margin-bottom: 20px !important;
+        background-color: #F9F9F9 !important;
+        padding: 5px !important;
     }
 
-    /* Footer */
     .footer-container {
         background-color: #1A1A1A;
         color: #ECF0F1;
@@ -141,32 +135,30 @@ st.markdown("""
     }
 
     .destinos-card {
-        transition: 0.3s;
         border-radius: 15px;
         overflow: hidden;
         background: white;
         border: 1px solid #EEE;
-    }
-    .destinos-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. HEADER (SIN EMOJIS, MÁS LIMPIO)
+# 3. HEADER (CORREO ÚNICO)
 col_l, col_r = st.columns([2, 1])
 with col_l:
+    # Usando el logo proporcionado
     st.image("https://i.ibb.co/ds6F7b72/ve.png", width=200)
 with col_r:
     st.markdown("""
         <div style='text-align:right; font-size:15px; margin-top:15px; color: #555;'>
-            <b>Atención al Cliente:</b> +57 324 373 1661<br>
-            <b>Sede Principal:</b> Medellín, El Poblado
+            <b>Email:</b> veronicaarangopedrozo@gmail.com<br>
+            <b>Contacto:</b> +57 324 373 1661<br>
+            <b>Medellín, El Poblado</b>
         </div>
     """, unsafe_allow_html=True)
 
-# 4. NAVEGACIÓN PRINCIPAL
+# 4. NAVEGACIÓN
 t_esencia, t_catalogo, t_atencion = st.tabs(["NUESTRA ESENCIA", "CATÁLOGO DE TOURS", "ATENCIÓN"])
 
 # --- CONTENIDO: NUESTRA ESENCIA ---
@@ -174,226 +166,172 @@ with t_esencia:
     st.markdown("""
         <div class="hero-section">
             <h1 class="hero-title">Costa-Tour</h1>
-            <p style='font-size: 24px; font-weight: 300; letter-spacing: 1px;'>Excelencia Turística en el Corazón de Colombia</p>
+            <p style='font-size: 24px;'>Tapeykue porãite Colombia yrembe'ýpe</p>
         </div>
         """, unsafe_allow_html=True)
 
-    # BLOQUE DE FILOSOFÍA Y VALORES (TEXTO LARGO Y SUSTANCIOSO)
     col_f1, col_f2 = st.columns(2)
     with col_f1:
         st.markdown("<div class='essence-card'>", unsafe_allow_html=True)
-        st.subheader("Nuestra Filosofía")
+        st.subheader("Ore rembiapo rape")
         st.write("""
-        En Costa-Tour, entendemos el viaje como una herramienta de transformación personal. No nos limitamos a la logística; 
-        buscamos la armonía entre el viajero y el entorno. Creemos firmemente en el turismo responsable, aquel que 
-        beneficia a las comunidades locales y preserva la integridad de nuestros paisajes naturales. 
-        Nuestra pasión es mostrar una Colombia auténtica, lejos de los clichés, enfocándonos en la calidad humana 
-        y la seguridad operativa. Cada itinerario es revisado minuciosamente para que su única preocupación sea 
-        disfrutar del momento.
+        Costa-Tour-pe rohecha tapeykue ñemoambue teéicha. Ndaha'éi logística añónte; roheka jaiko porãite 
+        tapicha ha tekoha ndive. Roguerovia upéva ha'eha pe tape añetete omoĩ porãva ñande rekoha ha 
+        umi táva oĩvape upépe. Ore rembipota ha'e rohechauka Colombia tee, jahecha hag̃ua tapichakuéra 
+        reko porã ha py'aguapy.
         """)
         st.markdown("</div>", unsafe_allow_html=True)
     
     with col_f2:
         st.markdown("<div class='essence-card'>", unsafe_allow_html=True)
-        st.subheader("¿Por qué elegirnos?")
+        st.subheader("Mba'érepa orembo'e")
         st.write("""
-        - **Especialistas en la Costa:** Conocemos cada rincón del Caribe y el Pacífico colombiano de primera mano.
-        - **Compromiso con la Calidad:** Seleccionamos aliados estratégicos bajo estándares internacionales de servicio.
-        - **Atención Personalizada:** Usted no es un número de reserva; es nuestro invitado de honor.
-        - **Sostenibilidad:** Trabajamos activamente en reducir la huella de carbono de nuestras operaciones.
-        - **Seguridad Integral:** Contamos con protocolos de emergencia y seguros de cobertura total en todos los planes.
+        - **Especialistas yrembe'ýpe:** Roikuaa porãite Caribe ha Pacífico colombiano.
+        - **Tembiapo porã:** Roiporavo porã umi oipytyvõtava oréve roguereko hag̃ua servicio premium.
+        - **Tapicha reko:** Nde ndaha'éi número de reserva; nde ha'e ore invitado de honor.
+        - **Tekoha ñangareko:** Romba'apo ani hag̃ua ore rembiapo ombyai ñande rekoha.
+        - **Py'aguapy:** Roguereko protocolo pytyvõrã opaite plan-pe.
         """)
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # GALERÍA DE DESTINOS DETALLADA
     st.markdown("<h2 class='section-title'>Destinos que te esperan</h2>", unsafe_allow_html=True)
     d_c1, d_c2, d_c3 = st.columns(3)
-    destinos = [
-        {
-            "nombre": "Archipiélago del Rosario", 
-            "img": "https://images.unsplash.com/photo-1589394815804-964ed962eb33?q=80&w=600",
-            "desc": "Aguas cristalinas y arrecifes de coral. El destino perfecto para el descanso y el buceo de alta categoría."
-        },
-        {
-            "nombre": "Selva de Nuquí", 
-            "img": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=600",
-            "desc": "Donde la selva toca el mar. Ideal para el avistamiento de ballenas jorobadas y el ecoturismo místico."
-        },
-        {
-            "nombre": "Santuario Tayrona", 
-            "img": "https://images.unsplash.com/photo-1596422846543-b5c64863e939?q=80&w=600",
-            "desc": "Cunas de la civilización indígena. Un recorrido entre montañas de la Sierra Nevada y playas vírgenes."
-        }
+    
+    # Imagenes con enlaces reales para evitar que salgan en blanco
+    destinos_imgs = [
+        {"nombre": "Archipiélago del Rosario", "img": "https://images.unsplash.com/photo-1544735030-c36173004944?q=80&w=600", "desc": "Y sakã ha coral-ita porãite."},
+        {"nombre": "Nuquí - Pacífico", "img": "https://images.unsplash.com/photo-1596422846543-b5c64863e939?q=80&w=600", "desc": "Ka'aguy ha yguasu oñuguaitĩhápe."},
+        {"nombre": "Parque Tayrona", "img": "https://images.unsplash.com/photo-1589394815804-964ed962eb33?q=80&w=600", "desc": "Yvyra ha yrembe'y porãite."}
     ]
-    for i, d in enumerate(destinos):
+    
+    for i, d in enumerate(destinos_imgs):
         with [d_c1, d_c2, d_c3][i]:
             st.markdown(f"""
                 <div class="destinos-card">
                     <img src="{d['img']}" style="width:100%; height:250px; object-fit:cover;">
-                    <div style="padding:20px;">
+                    <div style="padding:20px; text-align:center;">
                         <h4 style="margin:0;">{d['nombre']}</h4>
-                        <p style="font-size:14px; color:#666; margin-top:10px;">{d['desc']}</p>
+                        <p style="font-size:14px; color:#666;">{d['desc']}</p>
                     </div>
                 </div>
             """, unsafe_allow_html=True)
 
-# --- CONTENIDO: CATÁLOGO DE TOURS ---
+# --- CONTENIDO: CATÁLOGO DE TOURS (MOKÕI LÍNEA) ---
 with t_catalogo:
     st.markdown("<h2 class='section-title'>Líneas de Servicio</h2>", unsafe_allow_html=True)
     
-    # TABLA COMPARATIVA TÉCNICA
-    df_comp = pd.DataFrame({
-        "Atributo del Servicio": ["Alojamiento", "Gastronomía", "Transporte", "Asistencia", "Exclusividad", "Flexibilidad"],
-        "Línea Estándar": [
-            "Hoteles 3* / Posadas Rurales", 
-            "Desayuno Típico Incluido", 
-            "Transporte Terrestre Compartido", 
-            "Soporte Digital 24/7", 
-            "Grupos de hasta 15 personas",
-            "Itinerario Fijo"
-        ],
-        "Línea Premium": [
-            "Resorts 5* / Hoteles Boutique", 
-            "Plan Gastronómico Gourmet Completo", 
-            "Vehículos Privados de Lujo", 
-            "Concierge Personalizado In-Situ", 
-            "Privacidad Máxima (Solo su grupo)",
-            "Personalización de Horarios"
-        ]
-    })
-    st.table(df_comp)
+    # Tabla mejorada visualmente
+    st.markdown("""
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Línea Estándar</th>
+                <th>Línea Premium</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Alojamiento</td><td>Hotel 3* / Posada</td><td>Resort 5* / Boutique</td></tr>
+            <tr><td>Gastronomía</td><td>Desayuno Típico</td><td>Gourmet Completo</td></tr>
+            <tr><td>Transporte</td><td>Compartido Moderno</td><td>Vehículo Lujo Privado</td></tr>
+            <tr><td>Asistencia</td><td>Soporte Digital</td><td>Concierge Personalizado</td></tr>
+            <tr><td>Exclusividad</td><td>Grupos Dinámicos</td><td>Privacidad Total</td></tr>
+        </tbody>
+    </table>
+    """, unsafe_allow_html=True)
 
-    st.markdown("<br><hr style='border:0.5px solid #EEE;'><br>", unsafe_allow_html=True)
+    # LÍNEA ESTÁNDAR
+    st.markdown("### Línea Estándar: Calidad y Confort")
+    e_cols = st.columns(2)
+    with e_cols[0]:
+        st.image("https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=500")
+        st.write("**Tour Caribe Alegre:** Cartagena ha Islas del Rosario compartido. Confort ha diversión.")
+    with e_cols[1]:
+        st.image("https://images.unsplash.com/photo-1518732714860-b62714ce0c59?q=80&w=500")
+        st.write("**Aventura Pacífico:** Nuquí eco-posada. Avistamiento de ballenas ha senderismo.")
 
-    # SECCIÓN PREMIUM DETALLADA
-    st.markdown("<h2 style='text-align:center;'>Línea Premium: Exclusividad Elevada</h2>", unsafe_allow_html=True)
-    st.write("<p style='text-align:center;'>Diseñado para quienes el tiempo y el confort son el mayor lujo.</p>", unsafe_allow_html=True)
-    
+    st.markdown("<br><hr><br>", unsafe_allow_html=True)
+
+    # LÍNEA PREMIUM
+    st.markdown("### Línea Premium: Exclusividad Elevada")
     p_cols = st.columns(4)
     premium_tours = [
-        {
-            "id": "p1", "name": "Pacífico Vivo VIP", 
-            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s",
-            "desc": "<b>Experiencia Nuquí:</b> Estancia en Eco-Lodge de lujo con spa privado. Incluye vuelos charters privados, expediciones exclusivas de avistamiento y chef de comida fusión del mar solo para usted."
-        },
-        {
-            "id": "p2", "name": "Pacífico Místico Plus", 
-            "img": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1",
-            "desc": "<b>Bienestar Total:</b> Retiro en Bahía Solano. Yoga frente al mar, terapias de barro volcánico y caminatas por senderos privados. Alojamiento en bungalows de diseño arquitectónico sostenible."
-        },
-        {
-            "id": "p3", "name": "Sol Caribe Luxury", 
-            "img": "https://cdn2.paraty.es/landmar/images/865ffac6866fcba",
-            "desc": "<b>Islas VIP:</b> Navegación en yate privado por el archipiélago. Almuerzo en isla privada. Suite nupcial o familiar en resort de cadena internacional con servicio de mayordomía."
-        },
-        {
-            "id": "p4", "name": "Caribe Mágico Pro", 
-            "img": "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg",
-            "desc": "<b>Historia y Lujo:</b> Cartagena desde otra perspectiva. Cena en baluartes históricos, tour privado por las murallas y estancia en casa colonial restaurada con piscina privada y personal de servicio."
-        }
+        {"id": "p1", "name": "Pacífico Vivo VIP", "img": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=500", "desc": "Eco-Lodge lujo, vuelos privados ha chef personal."},
+        {"id": "p2", "name": "Pacífico Místico Plus", "img": "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=500", "desc": "Bahía Solano boutique, spa ha retiro yoga."},
+        {"id": "p3", "name": "Sol Caribe Luxury", "img": "https://images.unsplash.com/photo-1544124499-58912cbddaad?q=80&w=500", "desc": "Yate privado, resort VIP ha mayordomo."},
+        {"id": "p4", "name": "Caribe Mágico Pro", "img": "https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=500", "desc": "Casa colonial exclusiva, piscina ha cena privada."}
     ]
 
     for i, tour in enumerate(premium_tours):
         with p_cols[i]:
             st.image(tour['img'], use_container_width=True)
-            st.markdown(f"<p style='text-align:center; font-weight:600; font-size:18px;'>{tour['name']}</p>", unsafe_allow_html=True)
-            
-            state_key = f"st_{tour['id']}"
-            if state_key not in st.session_state: st.session_state[state_key] = False
-            
-            label = "Cerrar Detalles" if st.session_state[state_key] else "Ver Detalles Premium"
-            if st.button(label, key=tour['id']):
-                st.session_state[state_key] = not st.session_state[state_key]
-                st.rerun()
-            
-            if st.session_state[state_key]:
-                st.markdown(f"<div style='background:#F9F9F9; padding:15px; border-left:4px solid #C0392B; font-size:14px;'>{tour['desc']}</div>", unsafe_allow_html=True)
+            st.markdown(f"<p style='text-align:center; font-weight:600;'>{tour['name']}</p>", unsafe_allow_html=True)
+            if st.button("Ver Detalles Premium", key=tour['id']):
+                st.info(tour['desc'])
 
 # --- CONTENIDO: ATENCIÓN ---
 with t_atencion:
     st.markdown("<h2 class='section-title'>Atención al Viajero</h2>", unsafe_allow_html=True)
     
-    # CANALES DE CONTACTO (REORGANIZADO)
+    # CANALES
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown("""
-        <div style='background:white; padding:30px; border:1px solid #EEE; border-radius:15px; text-align:center;'>
-            <h4 style='color:#C0392B;'>Sede Administrativa</h4>
-            <p>Calle 10 #43E-21, El Poblado<br>Edificio Corporate Medellín<br>Antioquia, Colombia</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<div class='essence-card' style='text-align:center;'><h4>Ubicación</h4><p>Calle 10 #43E-21, Medellín<br>El Poblado</p></div>", unsafe_allow_html=True)
     with c2:
-        st.markdown("""
-        <div style='background:white; padding:30px; border:1px solid #EEE; border-radius:15px; text-align:center;'>
-            <h4 style='color:#C0392B;'>Correos Directos</h4>
-            <p><b>General:</b> veronicaarangopedrozo@gmail.com<br><b>Ventas:</b> reservas@costatour.com</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<div class='essence-card' style='text-align:center;'><h4>Email Único</h4><p>veronicaarangopedrozo<br>@gmail.com</p></div>", unsafe_allow_html=True)
     with c3:
-        st.markdown("""
-        <div style='background:white; padding:30px; border:1px solid #EEE; border-radius:15px; text-align:center;'>
-            <h4 style='color:#C0392B;'>Línea de Emergencia</h4>
-            <p><b>WhatsApp:</b> +57 324 373 1661<br>Disponibilidad 24 horas para pasajeros en tránsito.</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<div class='essence-card' style='text-align:center;'><h4>Línea 24h</h4><p>WhatsApp:<br>+57 324 373 1661</p></div>", unsafe_allow_html=True)
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    col_links1, col_links2 = st.columns(2)
+    with col_links1:
+        st.link_button("Ir al Portal de Servicio (PQR)", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u")
+    with col_links2:
+        st.link_button("Explorar Blog de Tips", "https://tipsdeviajeparalacostacolombiana.blogspot.com/")
 
-    # BOTONES DE ACCIÓN (SOLO PORTAL Y BLOG)
-    col_b1, col_b2 = st.columns(2)
-    with col_b1:
-        st.info("### Gestión de Solicitudes\nUtilice nuestro portal oficial para radicar cualquier requerimiento, consulta de reserva o trámite administrativo.")
-        st.link_button("Ir al Portal de Servicio", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u")
-    with col_b2:
-        st.success("### Tips del Viajero\n¿Qué llevar a la selva? ¿Cuál es la mejor época para el Caribe? Encuentre todas las respuestas en nuestro blog.")
-        st.link_button("Explorar el Blog de Tips", "https://tipsdeviajeparalacostacolombiana.blogspot.com/")
-
-    # PREGUNTAS FRECUENTES (8 PREGUNTAS LIMPIAS)
-    st.markdown("<h3 style='text-align:center; margin-top:50px;'>Preguntas Frecuentes</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; margin-top:40px;'>Porandu Jepi (FAQ)</h3>", unsafe_allow_html=True)
     faqs = [
-        ("¿Con cuánta anticipación debo reservar mi tour?", "Para la Línea Estándar, recomendamos 15 días. Para la Línea Premium, al menos 30 a 45 días debido a la alta demanda de hoteles boutique."),
-        ("¿Qué documentos son obligatorios para el viaje?", "Ciudadanos colombianos requieren cédula original vigente. Extranjeros deben portar pasaporte con el sello de ingreso al país."),
-        ("¿La asistencia médica está incluida en el precio?", "Sí, todos nuestros planes incluyen un seguro de viaje con cobertura nacional para accidentes y emergencias médicas."),
-        ("¿Puedo solicitar cambios en el itinerario de un tour Premium?", "Totalmente. Los planes Premium son flexibles. Usted puede coordinar con su concierge cambios de horarios o actividades adicionales."),
-        ("¿Cuáles son los métodos de pago habilitados?", "Aceptamos pagos electrónicos vía PSE, transferencias directas Bancolombia/Nequi y tarjetas de crédito internacionales."),
-        ("¿Los vuelos nacionales están dentro del paquete?", "Por defecto, el precio cubre la experiencia en destino. No obstante, ofrecemos el servicio de gestión de tiquetes aéreos como opcional."),
-        ("¿Cuál es la política en caso de cancelación por fuerza mayor?", "Contamos con una política flexible que permite reprogramar o solicitar reembolsos parciales según la antelación de la cancelación."),
-        ("¿Cuándo recibiré la confirmación final de mi reserva?", "Recibirá sus vouchers digitales y el itinerario minuto a minuto a través de correo electrónico y WhatsApp 48 horas antes de su salida.")
+        ("¿Mba'eichaitépa ambyaty va'erã che tour?", "Línea Estándar: 15 ára mboyve. Línea Premium: 30-45 ára mboyve."),
+        ("¿Mba'e kuatia amoneĩ va'erã?", "Cédula original térã pasaporte ojeike hag̃ua Colombia-pe."),
+        ("¿Oguereko seguro médico?", "Héẽ, opaite plan oguereko seguro asistencia médica nacional."),
+        ("¿Ikatúpa amopyahu che itinerario Premium?", "Héẽ, Línea Premium-pe ikatu amoambue ojejapoháicha nde reipotaháicha."),
+        ("¿Mba'éichapa ikatu apagá?", "PSE, transferencia Bancolombia/Nequi térã tarjeta de crédito."),
+        ("¿Oguerekópa avión tiquete?", "Ndaha'éi, pero ikatu roguerohory ojehepyme'ẽvo adicional."),
+        ("¿Mba'éichapa cancelación política?", "Roguereko política flexible reprogramación-rã."),
+        ("¿Araka'épa aguerohory che voucher?", "WhatsApp térã email rupive 48h viaje mboyve.")
     ]
     for q, a in faqs:
         with st.expander(q):
             st.write(a)
 
-# 5. FOOTER CORPORATIVO
+# 5. FOOTER
 st.markdown("""
     <div class="footer-container">
         <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px;">
             <div style="max-width: 350px;">
                 <h3 style="color: #C0392B;">Costa-Tour</h3>
-                <p>Agencia Líder en Experiencias de Costa en Colombia. Registro Nacional de Turismo vigente. Comprometidos con el desarrollo regional.</p>
+                <p>Agencia Líder en Experiencias de Costa en Colombia. Registro Nacional de Turismo vigente.</p>
             </div>
             <div>
-                <h4>Enlaces de Interés</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li>Política de Privacidad</li>
-                    <li>Términos y Condiciones</li>
-                    <li>Sostenibilidad Ambiental</li>
-                </ul>
+                <h4>Enlaces Rápidos</h4>
+                <p><a href="https://www.colombia.travel" style="color:white;">Turismo Colombia</a><br>
+                <a href="https://www.parquesnacionales.gov.co" style="color:white;">Parques Nacionales</a></p>
             </div>
             <div>
-                <h4>Contacto Directo</h4>
-                <p>📍 Calle 10 #43E-21, Medellín<br>📞 +57 324 373 1661<br>✉️ info@costatour.com</p>
+                <h4>Contacto</h4>
+                <p>📍 Medellín, Antioquia<br>📞 +57 324 373 1661<br>✉️ veronicaarangopedrozo@gmail.com</p>
             </div>
         </div>
         <hr style="border-color: #333; margin: 40px 0;">
-        <p style="text-align: center; font-size: 13px; opacity: 0.6;">© 2024 Costa-Tour Agencia de Viajes SAS. Todos los derechos reservados.</p>
+        <p style="text-align: center; font-size: 13px; opacity: 0.6;">© 2024 Costa-Tour Agencia de Viajes SAS.</p>
     </div>
     """, unsafe_allow_html=True)
 
-# 6. WHATSAPP FLOTANTE
+# 6. WHATSAPP
 st.markdown("""
     <a href="https://wa.me/573243731661" class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="22"> 
-        <span>Asesoría en Línea</span>
+        <span>Eñe'ẽ ore ndive</span>
     </a>
     """, unsafe_allow_html=True)
