@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon="✈️"
 )
 
-# 2. ESTILOS CSS - ENFOCADO EN BLANCO Y ELEGANCIA
+# 2. ESTILOS CSS - ENFOCADO EN BLANCO Y ELEGANCIA (RESTAURANDO COLORES)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&display=swap');
@@ -17,7 +17,7 @@ st.markdown("""
         background-color: #FFFFFF !important;
     }
     
-    /* Botones limpios */
+    /* Botones Rojos Originales */
     .stButton > button {
         background-color: #C0392B !important;
         color: white !important;
@@ -32,7 +32,7 @@ st.markdown("""
         transform: translateY(-2px);
     }
 
-    /* Hero Section con mejor contraste */
+    /* Hero Section */
     .hero-section {
         background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop');
         background-size: cover;
@@ -56,7 +56,7 @@ st.markdown("""
         text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
-    /* Barra de navegación de pestañas */
+    /* Barra de navegación */
     .stTabs [data-baseweb="tab-list"] {
         gap: 40px;
         justify-content: center;
@@ -65,7 +65,7 @@ st.markdown("""
 
     .stTabs [data-baseweb="tab"] {
         font-weight: 600;
-        color: #5D4037;
+        color: #8B4513; /* Color café original */
     }
 
     /* Tarjetas de contacto Blancas (Premium) */
@@ -80,16 +80,16 @@ st.markdown("""
     }
     
     .contact-icon {
-        font-size: 24px;
+        font-size: 28px;
         margin-bottom: 15px;
     }
 
-    /* Footer Blanco Elegante */
+    /* Footer Blanco */
     .footer-white {
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         border-top: 1px solid #eee;
-        padding: 60px 40px 30px 40px;
-        margin-top: 80px;
+        padding: 40px 40px;
+        margin-top: 60px;
         color: #555;
     }
 
@@ -118,9 +118,9 @@ st.markdown("""
         box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
     }
     
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
         font-family: 'Lora', serif;
-        color: #5D4037;
+        color: #8B4513;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -133,7 +133,7 @@ with t_col2:
     st.markdown("<p style='text-align:right; color:#888; font-size:14px; margin-top:20px;'>📞 +57 324 373 1661<br>✉️ veronicaarangopedrozo@gmail.com</p>", unsafe_allow_html=True)
 
 # 4. TABS
-tab_inicio, tab_tours, tab_servicios = st.tabs(["NUESTRA ESENCIA", "CATÁLOGO DE TOURS", "ATENCIÓN"])
+tab_inicio, tab_tours, tab_atencion = st.tabs(["NUESTRA ESENCIA", "CATÁLOGO DE TOURS", "ATENCIÓN"])
 
 # --- TAB INICIO ---
 with tab_inicio:
@@ -154,7 +154,7 @@ with tab_inicio:
     No somos solo una agencia de viajes; somos arquitectos de memorias. Nos especializamos en conectar el corazón indomable de Colombia con el mundo, ofreciendo experiencias que equilibran la riqueza natural de nuestras costas con un estándar de servicio impecable.
     """)
 
-    # Galería de Destinos (Tus imágenes de Unsplash)
+    # Galería de Destinos (RESTAURADA CON TUS IMÁGENES DE UNSPLASH)
     st.markdown("### Destinos que te esperan")
     img_cols = st.columns(4)
     urls = [
@@ -186,16 +186,6 @@ with tab_inicio:
         - **Conexión Real:** Guías que aman su tierra y te la muestran de verdad.
         """)
 
-    # CONTACTO (La parte más bonita)
-    st.markdown("<br><h3 style='text-align: center;'>Canales de Atención</h3>", unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.markdown("""<div class='contact-card'><div class='contact-icon'>📍</div><h4>Ubicación</h4><p>Medellín, Colombia<br>Atención Presencial (Cita previa)</p></div>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown("""<div class='contact-card'><div class='contact-icon'>✉️</div><h4>Email</h4><p>veronicaarangopedrozo<br>@gmail.com</p></div>""", unsafe_allow_html=True)
-    with c3:
-        st.markdown("""<div class='contact-card'><div class='contact-icon'>📞</div><h4>Teléfono</h4><p>+57 324 373 1661<br>Atención 24/7 Clientes</p></div>""", unsafe_allow_html=True)
-
 # --- TAB TOURS ---
 with tab_tours:
     st.markdown("<h2 style='text-align: center;'>Línea Premium: 'Exclusividad Elevada'</h2>", unsafe_allow_html=True)
@@ -203,10 +193,10 @@ with tab_tours:
     cp1, cp2, cp3, cp4 = st.columns(4)
     # Paquetes Premium
     packs = [
-        ("Caribe Mágico", "https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=600", "p1", "<b>Suite frente al mar.</b> Cena privada en la playa y barra libre premium."),
-        ("Pacífico Vivo", "https://images.unsplash.com/photo-1544551763-47a0159f963f?q=80&w=600", "p2", "<b>Avistamiento privado.</b> Yate exclusivo y Eco-Lodge de alta gama."),
-        ("Pacífico Místico", "https://images.unsplash.com/photo-1506929199039-b05275fa5352?q=80&w=600", "p3", "<b>Sanación y Spa.</b> Retiro boutique con menú orgánico personalizado."),
-        ("Sol Caribe", "https://images.unsplash.com/photo-1520483601560-389dff54adcd?q=80&w=600", "p4", "<b>Resort All-Inclusive.</b> Servicio de Concierge y traslados VIP.")
+        ("Caribe Mágico", "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", "p1", "<b>Suite frente al mar.</b> Cena privada en la playa y barra libre premium."),
+        ("Pacífico Vivo", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s", "p2", "<b>Avistamiento privado.</b> Yate exclusivo y Eco-Lodge de alta gama."),
+        ("Pacífico Místico", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1", "p3", "<b>Sanación y Spa.</b> Retiro boutique con menú orgánico personalizado."),
+        ("Sol Caribe", "https://cdn2.paraty.es/landmar/images/865ffac6866fcba", "p4", "<b>Resort All-Inclusive.</b> Servicio de Concierge y traslados VIP.")
     ]
 
     for i, (nombre, img, key, desc) in enumerate(packs):
@@ -225,10 +215,10 @@ with tab_tours:
     
     ce1, ce2, ce3, ce4 = st.columns(4)
     std_packs = [
-        ("Nuestra Costa", "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=600", "e1", "<b>Posadas con encanto.</b> Vive la cultura como un local."),
-        ("Marea", "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=600", "e2", "<b>Aventura marina.</b> Hoteles modernos y clases de surf."),
-        ("Ritmo Caribe", "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600", "e3", "<b>Noche y sabor.</b> Tour de bares y música en vivo."),
-        ("Ruta Marina", "https://images.unsplash.com/photo-1500614922032-b6dd337b1313?q=80&w=600", "e4", "<b>Ecoturismo.</b> Avistamiento en manglares y hoteles sostenibles.")
+        ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", "<b>Posadas con encanto.</b> Vive la cultura como un local."),
+        ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop", "e2", "<b>Aventura marina.</b> Hoteles modernos y clases de surf."),
+        ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", "<b>Noche y sabor.</b> Tour de bares y música en vivo."),
+        ("Ruta Marina", "https://blog.gimlivingspaces.com/hubfs/Muelle%20r%C3%BAstico%20de%20madera%20con%20una%20palapa%20con%20vistas%20a%20las%20aguas%20turquesas%20cristalinas%20en%20Isla%20Mujeres%2C%20playa%20de%20M%C3%A9xico.webp", "e4", "<b>Ecoturismo.</b> Avistamiento en manglares y hoteles sostenibles.")
     ]
 
     for i, (nombre, img, key, desc) in enumerate(std_packs):
@@ -243,8 +233,20 @@ with tab_tours:
                 st.markdown(f"<div class='package-description'>{desc}</div>", unsafe_allow_html=True)
 
 # --- TAB ATENCIÓN ---
-with tab_servicios:
-    st.markdown("### ¿En qué podemos ayudarte?")
+with tab_atencion:
+    st.markdown("<h2 style='text-align: center;'>¿En qué podemos ayudarte?</h2>", unsafe_allow_html=True)
+    
+    # SECCIÓN DE CONTACTO "LA MÁS BONITA"
+    st.markdown("<br>", unsafe_allow_html=True)
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.markdown("""<div class='contact-card'><div class='contact-icon'>📍</div><h4>Ubicación</h4><p>Medellín, Colombia<br>Atención Presencial (Cita previa)</p></div>""", unsafe_allow_html=True)
+    with c2:
+        st.markdown("""<div class='contact-card'><div class='contact-icon'>✉️</div><h4>Email</h4><p>veronicaarangopedrozo<br>@gmail.com</p></div>""", unsafe_allow_html=True)
+    with c3:
+        st.markdown("""<div class='contact-card'><div class='contact-icon'>📞</div><h4>Teléfono</h4><p>+57 324 373 1661<br>Atención 24/7 Clientes</p></div>""", unsafe_allow_html=True)
+    
+    st.markdown("<hr>", unsafe_allow_html=True)
     col_p1, col_p2 = st.columns(2)
     with col_p1:
         st.info("**PQR y Solicitudes**\n\nSi necesitas radicar un requerimiento formal, usa nuestro enlace seguro.")
@@ -253,10 +255,10 @@ with tab_servicios:
         st.success("**Blog de Viajero**\n\nConsejos de equipaje, mejores temporadas y guías de viaje.")
         st.link_button("Visitar el Blog", "https://tipsdeviajeparalacostacolombiana.blogspot.com/")
 
-# 5. FOOTER BLANCO
+# 5. FOOTER
 st.markdown("""
     <div class="footer-white">
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
             <div style="flex: 1; min-width: 250px;">
                 <h4 style="color:#8B4513">Costa-Tour</h4>
                 <p>Tu aliado en experiencias inolvidables por las costas de Colombia.</p>
@@ -270,7 +272,7 @@ st.markdown("""
                 <p>Instagram | Facebook | TikTok</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 40px; font-size: 13px; color: #aaa;">
+        <div style="text-align: center; margin-top: 30px; font-size: 13px; color: #aaa; border-top: 1px solid #eee; padding-top: 20px;">
             © 2024 Costa-Tour Agencia de Viajes. Todos los derechos reservados.
         </div>
     </div>
@@ -279,6 +281,6 @@ st.markdown("""
 # 6. BOTÓN WHATSAPP
 st.markdown("""
     <a href="https://wa.me/573243731661?text=Hola%20Costa-Tour!" class="whatsapp-float" target="_blank">
-        💬 Reserva con un Asesor
+        💬 ¡Reserva con un Asesor!
     </a>
     """, unsafe_allow_html=True)
