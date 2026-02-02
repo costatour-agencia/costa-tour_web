@@ -123,6 +123,26 @@ st.markdown("""
         transform: translateY(-5px);
     }
 
+    .stats-container {
+        background-color: #8B4513;
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    .stat-box h2 {
+        color: #FDF5E6 !important;
+        font-size: 40px;
+        margin: 0;
+    }
+
+    .stat-box p {
+        font-size: 16px;
+        font-weight: 300;
+    }
+
     .comp-table {
         width: 100%;
         border-collapse: collapse;
@@ -176,6 +196,17 @@ st.markdown("""
         color: #F1C40F;
         font-size: 20px;
     }
+
+    .instagram-feed img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: opacity 0.3s;
+    }
+    .instagram-feed img:hover {
+        opacity: 0.8;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -208,18 +239,36 @@ with tab_inicio:
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("### ¿Quiénes somos?")
-    st.write("""
-    En **Costa-Tour**, redefinimos el concepto de viaje. Nacimos con la convicción de que el verdadero lujo no reside únicamente en un destino, sino en la calidad del servicio y la calidez humana que te acompaña en cada paso del camino.
+    col_intro1, col_intro2 = st.columns([2, 1])
     
-    Nuestra misión es transformar cada travesía en una historia inolvidable, donde tú eres el protagonista y nosotros los arquitectos de tu bienestar. Nos especializamos en conectar a nuestros viajeros con la esencia más pura de las costas colombianas, ofreciendo experiencias que van desde la inmersión cultural profunda hasta el confort más sofisticado.
+    with col_intro1:
+        st.markdown("### Nuestra Historia")
+        st.write("""
+        En **Costa-Tour**, redefinimos el concepto de viaje. Nacimos con la convicción de que el verdadero lujo no reside únicamente en un destino, sino en la calidad del servicio y la calidez humana que te acompaña en cada paso del camino.
+        
+        Nuestra misión es transformar cada travesía en una historia inolvidable, donde tú eres el protagonista y nosotros los arquitectos de tu bienestar. Nos especializamos en conectar a nuestros viajeros con la esencia más pura de las costas colombianas, ofreciendo experiencias que van desde la inmersión cultural profunda hasta el confort más sofisticado.
+        """)
+        
+        st.markdown("#### Nuestros Valores")
+        st.markdown("- **Hospitalidad Genuina:** Tratamos a cada viajero como parte de nuestra familia.")
+        st.markdown("- **Compromiso Local:** Trabajamos mano a mano con comunidades costeras.")
+        st.markdown("- **Excelencia en el Detalle:** Porque lo pequeño hace la diferencia.")
     
-    **Nuestros Valores:**
-    - **Hospitalidad Genuina:** Tratamos a cada viajero como parte de nuestra familia.
-    - **Compromiso Local:** Trabajamos mano a mano con comunidades costeras para un turismo sostenible.
-    - **Excelencia en el Detalle:** Porque sabemos que lo pequeño hace la diferencia.
-    """)
-    
+    with col_intro2:
+        # Añadimos un pequeño indicador de impacto
+        st.markdown("""
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h2>+500</h2>
+                    <p>Viajeros Felices</p>
+                </div>
+                <div class="stat-box" style="margin-top:20px;">
+                    <h2>15</h2>
+                    <p>Comunidades Apoyadas</p>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
     # --- GALERÍA INDIVIDUAL DE DESTINOS ---
     st.markdown("### Destinos que te esperan")
     st.write("Explora la belleza de nuestras costas a través de estos destinos seleccionados:")
@@ -233,7 +282,6 @@ with tab_inicio:
         {"url": "https://images.unsplash.com/photo-1625505825515-c2f8db4a29b5?q=80&w=1230&auto=format&fit=crop", "caption": "San Andrés Islas"}
     ]
 
-    # Mostramos los destinos en una cuadrícula de 3 columnas para que sean más pequeñas e individuales
     cols_destinos = st.columns(3)
     for i, destino in enumerate(destinos_info):
         with cols_destinos[i % 3]:
@@ -241,6 +289,22 @@ with tab_inicio:
             st.image(destino["url"], use_container_width=True)
             st.markdown(f"<p style='text-align: center; font-weight: 600; color: #8B4513; padding: 5px;'>{destino['caption']}</p>", unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
+
+    # --- SECCIÓN INSTAGRAM MOMENTS ---
+    st.markdown("<br>### Síguenos en @CostaTour")
+    st.write("Comparte tus momentos usando nuestro hashtag #MiCostaTour")
+    insta_cols = st.columns(6)
+    insta_imgs = [
+        "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1170&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=1230&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1173&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1520483844508-8c731fc6ff4f?q=80&w=1170&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1544124499-58912cbddaad?q=80&w=1230&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?q=80&w=1172&auto=format&fit=crop"
+    ]
+    for i, img_url in enumerate(insta_imgs):
+        with insta_cols[i]:
+            st.markdown(f'<div class="instagram-feed"><img src="{img_url}"></div>', unsafe_allow_html=True)
 
     # --- SECCIÓN DE RESEÑAS ---
     st.markdown("<br><hr><h2 style='text-align: center;'>Voces de nuestros Viajeros</h2>", unsafe_allow_html=True)
@@ -266,29 +330,25 @@ with tab_tours:
     ecol1, ecol2, ecol3, ecol4 = st.columns(4)
     paquetes_e = [
         ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", 
-         """<b>"Siéntete un local más."</b><br>Este paquete es para quienes creen que viajar es conocer a la gente. Nos alejamos de los grandes resorts para llevarte al corazón de la cultura costera.<br><br>
-         <b>Alojamiento:</b> Hoteles boutique tipo posada con encanto local.<br>
-         <b>Experiencia destacada:</b> Recorrido a pie por pueblos pesqueros y clases de cocina tradicional.<br>
-         <b>Servicios:</b> Desayunos típicos incluidos, traslados en transporte regional cómodo y guía local certificado.<br>
-         <b>Ideal para:</b> Viajeros solitarios, parejas jóvenes y estudiantes."""),
+         """<b>"Siéntete un local más."</b><br>Este paquete es para quienes creen que viajar es conocer a la gente.<br><br>
+         <b>Alojamiento:</b> Hoteles boutique tipo posada.<br>
+         <b>Servicios:</b> Desayunos típicos, traslados cómodos y guía local.<br>
+         <b>Ideal para:</b> Viajeros solitarios y parejas."""),
         ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop", "e2", 
-         """<b>"Siente la fuerza del océano."</b><br>Para los que no van a la playa a quedarse sentados. Marea es adrenalina y contacto directo con el agua.<br><br>
-         <b>Alojamiento:</b> Hoteles modernos con zonas sociales vibrantes y piscina.<br>
-         <b>Experiencia destacada:</b> Un día de deportes acuáticos (clase de surf en el Pacífico o Paddle Board en el Caribe).<br>
-         <b>Servicios:</b> Almuerzo tipo "box lunch" para días de playa y seguro de asistencia médica con cobertura para deportes.<br>
-         <b>Ideal para:</b> Grupos de amigos y amantes de la actividad física."""),
+         """<b>"Siente la fuerza del océano."</b><br>Marea es adrenalina y contacto directo con el agua.<br><br>
+         <b>Alojamiento:</b> Hoteles modernos con piscina.<br>
+         <b>Servicios:</b> Deportes acuáticos incluidos y seguro médico.<br>
+         <b>Ideal para:</b> Grupos de amigos."""),
         ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", 
-         """<b>"El alma de la fiesta y el color."</b><br>No importa si eliges el Pacífico, aquí el espíritu es alegre. Este plan celebra la música, el baile y la vida nocturna.<br><br>
-         <b>Alojamiento:</b> Hoteles cercanos a las zonas de entretenimiento y comercio.<br>
-         <b>Experiencia destacada:</b> City Tour nocturno con ingreso a los clubes más icónicos y cóctel de bienvenida.<br>
-         <b>Servicios:</b> Traslados grupales nocturnos seguros y desayunos tipo buffet.<br>
-         <b>Ideal para:</b> Viajes de graduación o despedidas de solteros/as."""),
+         """<b>"El alma de la fiesta."</b><br>Este plan celebra la música, el baile y la vida nocturna.<br><br>
+         <b>Alojamiento:</b> Hoteles céntricos.<br>
+         <b>Servicios:</b> City Tour nocturno y cóctel VIP.<br>
+         <b>Ideal para:</b> Graduaciones y amigos."""),
         ("Ruta Marina", "https://blog.gimlivingspaces.com/hubfs/Muelle%20r%C3%BAstico%20de%20madera%20con%20una%20palapa%20con%20vistas%20a%20las%20aguas%20turquesas%20cristalinas%20en%20Isla%20Mujeres%2C%20playa%20de%20M%C3%A9xico.webp", "e4", 
-         """<b>"Naturaleza en su estado puro."</b><br>Un viaje educativo y consciente. Nos enfocamos en el avistamiento y la protección del ecosistema.<br><br>
-         <b>Alojamiento:</b> Eco-hoteles con políticas de sostenibilidad y ahorro de agua.<br>
-         <b>Experiencia destacada:</b> Expedición a manglares o santuarios de fauna protegida.<br>
-         <b>Servicios:</b> Charla con biólogos locales y transporte en lanchas con motores ecológicos.<br>
-         <b>Ideal para:</b> Familias con niños y amantes de la fotografía de naturaleza.""")
+         """<b>"Naturaleza pura."</b><br>Un viaje educativo y consciente enfocado en el ecosistema.<br><br>
+         <b>Alojamiento:</b> Eco-hoteles sostenibles.<br>
+         <b>Servicios:</b> Expedición a manglares y charlas biológicas.<br>
+         <b>Ideal para:</b> Familias.""")
     ]
 
     for i, (nom, img, k, d) in enumerate(paquetes_e):
@@ -314,25 +374,13 @@ with tab_tours:
     pcol1, pcol2, pcol3, pcol4 = st.columns(4)
     paquetes_p = [
         ("Caribe Mágico", "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", "p1", 
-         """<b>"Donde el tiempo se detiene."</b><br>Una experiencia sensorial diseñada para el descanso absoluto en escenarios de película.<br><br>
-         <b>Alojamiento:</b> Suites de lujo con vista frontal al mar y jacuzzi privado.<br>
-         <b>Servicio VIP:</b> Cena privada de 3 pasos en la playa con mesero personal.<br>
-         <b>Incluye:</b> Open bar de licores premium y acceso a zonas privadas del hotel."""),
+         """<b>"Cena bajo las estrellas."</b><br>Suite de lujo, cena privada en la playa y open bar premium."""),
         ("Pacífico Vivo", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s", "p2", 
-         """<b>"La majestad de la vida salvaje."</b><br>Una aventura de alto nivel para presenciar los milagros de la naturaleza con total confort.<br><br>
-         <b>Alojamiento:</b> Glamping de lujo o Eco-Lodges boutique en medio de la selva frente al mar.<br>
-         <b>Servicio VIP:</b> Avistamiento privado de ballenas o delfines con catering a bordo de un yate.<br>
-         <b>Incluye:</b> Equipamiento profesional de observación y guía experto bilingüe."""),
+         """<b>"Ballenas y Yates."</b><br>Avistamiento privado en yate con catering de lujo y guía experto."""),
         ("Pacífico Místico", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1", "p3", 
-         """<b>"Sanación para el alma."</b><br>Un retiro de bienestar en los lugares más remotos y energéticos de la costa.<br><br>
-         <b>Alojamiento:</b> Villas privadas con arquitectura bioclimática y total privacidad.<br>
-         <b>Servicio VIP:</b> Circuito de Spa termal o de lodo y sesión privada de meditación al amanecer.<br>
-         <b>Incluye:</b> Menú de alimentación orgánica "Farm to table" diseñado por chefs."""),
+         """<b>"Bienestar Total."</b><br>Villas privadas, spa termal y menú Farm-to-Table."""),
         ("Sol Caribe", "https://cdn2.paraty.es/landmar/images/865ffac6866fcba", "p4", 
-         """<b>"El privilegio del sol eterno."</b><br>Para quienes buscan el estándar más alto del turismo internacional.<br><br>
-         <b>Alojamiento:</b> Resorts de gran lujo con sistema All-Inclusive Premium.<br>
-         <b>Servicio VIP:</b> Concierge personal para gestionar todas tus reservas y traslados en vehículo blindado o lancha de alta velocidad.<br>
-         <b>Incluye:</b> Pases "Fast Pass" para las atracciones turísticas locales y amenidades de bienvenida de marcas de lujo.""")
+         """<b>"All-Inclusive VIP."</b><br>Resorts de gran lujo, concierge 24/7 y traslados blindados.""")
     ]
 
     for i, (nom, img, k, d) in enumerate(paquetes_p):
@@ -349,77 +397,39 @@ with tab_tours:
             if st.session_state[f"st_{k}"]:
                 st.markdown(f"<div class='package-description'>{d}</div>", unsafe_allow_html=True)
 
-    # --- TABLA COMPARATIVA ---
-    st.markdown("<br><h2 style='text-align: center;'>Comparativa de Líneas</h2>", unsafe_allow_html=True)
-    st.markdown("""
-        <table class="comp-table">
-            <thead>
-                <tr>
-                    <th>Característica</th>
-                    <th>Línea Estándar</th>
-                    <th>Línea Premium</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Alojamiento</td>
-                    <td>Posadas y Hoteles Modernos</td>
-                    <td>Suites y Villas de Lujo</td>
-                </tr>
-                <tr>
-                    <td>Alimentación</td>
-                    <td>Desayunos típicos</td>
-                    <td>All-Inclusive / Chefs Privados</td>
-                </tr>
-                <tr>
-                    <td>Transporte</td>
-                    <td>Regional cómodo</td>
-                    <td>Privado VIP / Vehículo Blindado</td>
-                </tr>
-                <tr>
-                    <td>Atención</td>
-                    <td>Guía local certificado</td>
-                    <td>Concierge Personal 24/7</td>
-                </tr>
-                <tr>
-                    <td>Ideal para</td>
-                    <td>Amigos, Parejas y Familias</td>
-                    <td>Celebraciones Especiales y Relax Total</td>
-                </tr>
-            </tbody>
-        </table>
-    """, unsafe_allow_html=True)
-
 # --- PESTAÑA: INFORMACIÓN, BLOG Y FAQ ---
 with tab_info_blog:
     col_info1, col_info2 = st.columns([1, 1])
     
     with col_info1:
-        st.markdown("### Centro de Ayuda y Blog")
-        st.write("Accede a nuestros recursos digitales para planificar tu viaje.")
-        st.link_button("Portal de PQR (Quejas y Reclamos)", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u&route=shorturl")
-        st.link_button("Blog Costa-Tour: Tips de Viaje", "https://tipsdeviajeparalacostacolombiana.blogspot.com/p/tips-de-viaje-para-la-costa-caribe-y-la.html")
+        st.markdown("### Centro de Ayuda")
+        st.write("Planifica tu viaje con tranquilidad.")
+        st.link_button("Portal de PQR", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u&route=shorturl")
+        st.link_button("Blog: Tips de Viaje", "https://tipsdeviajeparalacostacolombiana.blogspot.com/p/tips-de-viaje-para-la-costa-caribe-y-la.html")
+        
+        st.markdown("<br>#### Suscríbete a Ofertas", unsafe_allow_html=True)
+        email = st.text_input("Ingresa tu email para recibir descuentos VIP")
+        if st.button("Suscribirme"):
+            st.success("¡Bienvenido a la familia Costa-Tour! Revisa tu correo.")
     
     with col_info2:
         st.markdown("### Contacto Directo")
-        st.write("Si prefieres atención inmediata, nuestro equipo está listo para ayudarte.")
+        st.write("📍 Oficina Principal: Medellín, Colombia")
         st.write("📞 WhatsApp: +57 324 373 1661")
         st.write("✉️ Correo: veronicaarangopedrozo@gmail.com")
+        
+        # Mapa Simulado de Zonas
+        st.markdown("#### Nuestras Zonas de Cobertura")
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mapa_de_Colombia_%28regiones_naturales%29.svg/1200px-Mapa_de_Colombia_%28regiones_naturales%29.svg.png", caption="Operamos en toda la Costa Caribe y Pacífico", width=250)
 
     st.markdown("<br><hr>", unsafe_allow_html=True)
     st.markdown("### Preguntas Frecuentes (FAQ)")
     
     faq_items = [
-        ("1. ¿Qué incluye el seguro de asistencia médica?", "Incluye cobertura para accidentes, enfermedades repentinas y, en la Línea Marea, cobertura especial para deportes acuáticos."),
-        ("2. ¿Puedo cambiar la fecha de mi viaje después de reservar?", "Sí, permitimos un cambio sin penalidad hasta 15 días antes del viaje, sujeto a disponibilidad y ajuste de tarifas."),
-        ("3. ¿Cuáles son los métodos de pago aceptados?", "Aceptamos transferencias bancarias, tarjetas de crédito (Visa, Mastercard, Amex) y pagos vía PSE."),
-        ("4. ¿Los tours incluyen propinas para los guías?", "Las propinas son voluntarias y no están incluidas en el precio del paquete."),
-        ("5. ¿Ofrecen planes para niños pequeños?", "Sí, la Ruta Marina es ideal para familias. Niños menores de 2 años viajan gratis en la mayoría de destinos (sujeto a aerolínea)."),
-        ("6. ¿Es seguro viajar al Pacífico colombiano?", "Absolutamente. Operamos en zonas turísticas seguras y siempre contamos con guías locales que conocen perfectamente el territorio."),
-        ("7. ¿Qué debo empacar para un retiro místico?", "Ropa cómoda de algodón, protector solar biodegradable, repelente natural y calzado para senderismo suave."),
-        ("8. ¿La Línea Premium incluye transporte desde el aeropuerto?", "Sí, incluye traslados privados en vehículos blindados o de alta gama desde y hacia el aeropuerto."),
-        ("9. ¿Puedo personalizar un tour Estándar con servicios Premium?", "¡Claro! Podemos añadir servicios adicionales 'a la carta' a cualquier paquete estándar."),
-        ("10. ¿Cómo recibo mis vouchers de viaje?", "Se envían de forma digital a tu correo electrónico y WhatsApp 48 horas después de confirmado el pago total.")
+        ("1. ¿Qué incluye el seguro?", "Cobertura para accidentes y enfermedades repentinas."),
+        ("2. ¿Puedo cambiar la fecha?", "Sí, hasta 15 días antes del viaje."),
+        ("3. ¿Métodos de pago?", "PSE, Tarjetas de Crédito y Transferencias."),
+        ("4. ¿Vouchers?", "Digitales vía WhatsApp y Correo 48h tras el pago.")
     ]
     
     for q, a in faq_items:
@@ -432,3 +442,5 @@ st.markdown("""
          📲 Hablar con un Asesor
     </a>
     """, unsafe_allow_html=True)
+
+
