@@ -40,7 +40,7 @@ st.markdown("""
     }
 
     .hero-section {
-        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400');
+        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1400');
         background-size: cover;
         background-position: center;
         height: 450px;
@@ -112,7 +112,6 @@ st.markdown("""
         color: #8B4513;
     }
 
-    /* Estilo para la tabla comparativa */
     .comp-table {
         width: 100%;
         border-collapse: collapse;
@@ -231,13 +230,13 @@ with tab_tours:
     
     cp1, cp2, cp3, cp4 = st.columns(4)
     paquetes_premium = [
-        ("Caribe Mágico", "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400", "p1", 
+        ("Caribe Mágico", "https://images.unsplash.com/photo-1545127398-14699f92334b?w=400", "p1", 
          "<b>Donde el tiempo se detiene.</b><br>Descanso absoluto en escenarios de película.<br><br><b>Alojamiento:</b> Suites con vista al mar y jacuzzi.<br><b>Servicio VIP:</b> Cena privada de 3 pasos en la playa.<br><b>Incluye:</b> Open bar premium y zonas privadas."),
         ("Pacífico Vivo", "https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=400", "p2", 
          "<b>La majestad de la vida salvaje.</b><br>Aventura de alto nivel con total confort.<br><br><b>Alojamiento:</b> Glamping de lujo o Eco-Lodges boutique.<br><b>Servicio VIP:</b> Avistamiento privado en yate con catering.<br><b>Incluye:</b> Guía experto bilingüe."),
-        ("Pacífico Místico", "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?w=400", "p3", 
+        ("Pacífico Místico", "https://images.unsplash.com/photo-1533719071182-0568d0ed4448?w=400", "p3", 
          "<b>Sanación para el alma.</b><br>Retiro de bienestar en lugares remotos y energéticos.<br><br><b>Alojamiento:</b> Villas privadas bioclimáticas.<br><b>Servicio VIP:</b> Spa termal y meditación privada.<br><b>Incluye:</b> Menú orgánico Farm to table."),
-        ("Sol Caribe", "https://images.unsplash.com/photo-1544735749-31ef535b43c1?w=400", "p4", 
+        ("Sol Caribe", "https://images.unsplash.com/photo-1589394815804-964ed9be2eb3?w=400", "p4", 
          "<b>El privilegio del sol eterno.</b><br>El estándar más alto del turismo internacional.<br><br><b>Alojamiento:</b> Resorts All-Inclusive Premium.<br><b>Servicio VIP:</b> Concierge personal y transporte blindado.<br><b>Incluye:</b> Fast Pass y amenidades de lujo.")
     ]
 
@@ -262,7 +261,7 @@ with tab_tours:
     paquetes_estandar = [
         ("Nuestra Costa", "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=400", "e1", 
          "<b>Siéntete un local más.</b><br>Conoce el corazón de la cultura costera.<br><br><b>Alojamiento:</b> Posadas boutique con encanto.<br><b>Exp. destacada:</b> Clases de cocina tradicional.<br><b>Ideal para:</b> Parejas y viajeros solitarios."),
-        ("Marea", "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=400", "e2", 
+        ("Marea", "https://images.unsplash.com/photo-1520116468816-95b69f847357?w=400", "e2", 
          "<b>Siente la fuerza del océano.</b><br>Adrenalina y contacto directo con el agua.<br><br><b>Alojamiento:</b> Hoteles modernos con piscina.<br><b>Exp. destacada:</b> Surf o Paddle Board.<br><b>Ideal para:</b> Grupos de amigos."),
         ("Ritmo Caribe", "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400", "e3", 
          "<b>El alma de la fiesta.</b><br>Celebra la música, el baile y la vida nocturna.<br><br><b>Alojamiento:</b> Céntrico cerca de zonas de ocio.<br><b>Exp. destacada:</b> City Tour nocturno VIP.<br><b>Ideal para:</b> Despedidas de solteros/as."),
