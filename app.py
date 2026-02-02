@@ -117,6 +117,8 @@ st.markdown("""
         border-collapse: collapse;
         margin: 30px 0;
         font-family: 'Poppins', sans-serif;
+        background-color: white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
     .comp-table th {
         background-color: #8B4513;
@@ -128,6 +130,7 @@ st.markdown("""
         padding: 15px;
         border-bottom: 1px solid #eee;
         text-align: center;
+        color: #333;
     }
 
     .testimonial-card {
@@ -197,6 +200,13 @@ with tab_inicio:
     st.markdown("### ¿Quiénes somos?")
     st.write("""
     En **Costa-Tour**, redefinimos el concepto de viaje. Nacimos con la convicción de que el verdadero lujo no reside únicamente en un destino, sino en la calidad del servicio y la calidez humana que te acompaña en cada paso del camino.
+    
+    Nuestra misión es transformar cada travesía en una historia inolvidable, donde tú eres el protagonista y nosotros los arquitectos de tu bienestar. Nos especializamos en conectar a nuestros viajeros con la esencia más pura de las costas colombianas, ofreciendo experiencias que van desde la inmersión cultural profunda hasta el confort más sofisticado.
+    
+    **Nuestros Valores:**
+    - **Hospitalidad Genuina:** Tratamos a cada viajero como parte de nuestra familia.
+    - **Compromiso Local:** Trabajamos mano a mano con comunidades costeras para un turismo sostenible.
+    - **Excelencia en el Detalle:** Porque sabemos que lo pequeño hace la diferencia.
     """)
     
     # --- GALERÍA DINÁMICA DE DESTINOS ---
@@ -212,11 +222,9 @@ with tab_inicio:
         "https://images.unsplash.com/photo-1594342436424-dda50df715d9?q=80&w=1171&auto=format&fit=crop"
     ]
     
-    # Manejo de estado para la galería (simulando rotación)
     if 'img_idx' not in st.session_state:
         st.session_state.img_idx = 0
     
-    # Mostrar imagen actual
     st.image(destinos_imgs[st.session_state.img_idx], use_container_width=True, caption="Nuestros paraísos seleccionados")
     
     col_prev, col_next = st.columns([1, 1])
@@ -283,8 +291,13 @@ with tab_tours:
             st.image(img, use_container_width=True)
             st.markdown(f"<h4 style='text-align: center;'>{nom}</h4>", unsafe_allow_html=True)
             if f"st_{k}" not in st.session_state: st.session_state[f"st_{k}"] = False
-            if st.button("Ver Plan", key=f"btn_{k}"):
+            
+            # Botón inteligente para abrir/cerrar
+            label = "Cerrar" if st.session_state[f"st_{k}"] else "Ver Plan"
+            if st.button(label, key=f"btn_{k}"):
                 st.session_state[f"st_{k}"] = not st.session_state[f"st_{k}"]
+                st.rerun()
+            
             if st.session_state[f"st_{k}"]:
                 st.markdown(f"<div class='package-description'>{d}</div>", unsafe_allow_html=True)
 
@@ -323,10 +336,55 @@ with tab_tours:
             st.image(img, use_container_width=True)
             st.markdown(f"<h4 style='text-align: center;'>{nom}</h4>", unsafe_allow_html=True)
             if f"st_{k}" not in st.session_state: st.session_state[f"st_{k}"] = False
-            if st.button("Detalles VIP", key=f"btn_{k}"):
+            
+            label = "Cerrar" if st.session_state[f"st_{k}"] else "Detalles VIP"
+            if st.button(label, key=f"btn_{k}"):
                 st.session_state[f"st_{k}"] = not st.session_state[f"st_{k}"]
+                st.rerun()
+                
             if st.session_state[f"st_{k}"]:
                 st.markdown(f"<div class='package-description'>{d}</div>", unsafe_allow_html=True)
+
+    # --- TABLA COMPARATIVA ---
+    st.markdown("<br><h2 style='text-align: center;'>Comparativa de Líneas</h2>", unsafe_allow_html=True)
+    st.markdown("""
+        <table class="comp-table">
+            <thead>
+                <tr>
+                    <th>Característica</th>
+                    <th>Línea Estándar</th>
+                    <th>Línea Premium</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alojamiento</td>
+                    <td>Posadas y Hoteles Modernos</td>
+                    <td>Suites y Villas de Lujo</td>
+                </tr>
+                <tr>
+                    <td>Alimentación</td>
+                    <td>Desayunos típicos</td>
+                    <td>All-Inclusive / Chefs Privados</td>
+                </tr>
+                <tr>
+                    <td>Transporte</td>
+                    <td>Regional cómodo</td>
+                    <td>Privado VIP / Vehículo Blindado</td>
+                </tr>
+                <tr>
+                    <td>Atención</td>
+                    <td>Guía local certificado</td>
+                    <td>Concierge Personal 24/7</td>
+                </tr>
+                <tr>
+                    <td>Ideal para</td>
+                    <td>Amigos, Parejas y Familias</td>
+                    <td>Celebraciones Especiales y Relax Total</td>
+                </tr>
+            </tbody>
+        </table>
+    """, unsafe_allow_html=True)
 
 # --- PESTAÑA: INFORMACIÓN, BLOG Y FAQ ---
 with tab_info_blog:
@@ -347,35 +405,22 @@ with tab_info_blog:
     st.markdown("<br><hr>", unsafe_allow_html=True)
     st.markdown("### Preguntas Frecuentes (FAQ)")
     
-    with st.expander("1. ¿Qué incluye el seguro de asistencia médica?"):
-        st.write("Incluye cobertura para accidentes, enfermedades repentinas y, en la Línea Marea, cobertura especial para deportes acuáticos.")
+    faq_items = [
+        ("1. ¿Qué incluye el seguro de asistencia médica?", "Incluye cobertura para accidentes, enfermedades repentinas y, en la Línea Marea, cobertura especial para deportes acuáticos."),
+        ("2. ¿Puedo cambiar la fecha de mi viaje después de reservar?", "Sí, permitimos un cambio sin penalidad hasta 15 días antes del viaje, sujeto a disponibilidad y ajuste de tarifas."),
+        ("3. ¿Cuáles son los métodos de pago aceptados?", "Aceptamos transferencias bancarias, tarjetas de crédito (Visa, Mastercard, Amex) y pagos vía PSE."),
+        ("4. ¿Los tours incluyen propinas para los guías?", "Las propinas son voluntarias y no están incluidas en el precio del paquete."),
+        ("5. ¿Ofrecen planes para niños pequeños?", "Sí, la Ruta Marina es ideal para familias. Niños menores de 2 años viajan gratis en la mayoría de destinos (sujeto a aerolínea)."),
+        ("6. ¿Es seguro viajar al Pacífico colombiano?", "Absolutamente. Operamos en zonas turísticas seguras y siempre contamos con guías locales que conocen perfectamente el territorio."),
+        ("7. ¿Qué debo empacar para un retiro místico?", "Ropa cómoda de algodón, protector solar biodegradable, repelente natural y calzado para senderismo suave."),
+        ("8. ¿La Línea Premium incluye transporte desde el aeropuerto?", "Sí, incluye traslados privados en vehículos blindados o de alta gama desde y hacia el aeropuerto."),
+        ("9. ¿Puedo personalizar un tour Estándar con servicios Premium?", "¡Claro! Podemos añadir servicios adicionales 'a la carta' a cualquier paquete estándar."),
+        ("10. ¿Cómo recibo mis vouchers de viaje?", "Se envían de forma digital a tu correo electrónico y WhatsApp 48 horas después de confirmado el pago total.")
+    ]
     
-    with st.expander("2. ¿Puedo cambiar la fecha de mi viaje después de reservar?"):
-        st.write("Sí, permitimos un cambio sin penalidad hasta 15 días antes del viaje, sujeto a disponibilidad y ajuste de tarifas.")
-    
-    with st.expander("3. ¿Cuáles son los métodos de pago aceptados?"):
-        st.write("Aceptamos transferencias bancarias, tarjetas de crédito (Visa, Mastercard, Amex) y pagos vía PSE.")
-    
-    with st.expander("4. ¿Los tours incluyen propinas para los guías?"):
-        st.write("Las propinas son voluntarias y no están incluidas en el precio del paquete.")
-    
-    with st.expander("5. ¿Ofrecen planes para niños pequeños?"):
-        st.write("Sí, la Ruta Marina es ideal para familias. Niños menores de 2 años viajan gratis en la mayoría de destinos (sujeto a aerolínea).")
-    
-    with st.expander("6. ¿Es seguro viajar al Pacífico colombiano?"):
-        st.write("Absolutamente. Operamos en zonas turísticas seguras y siempre contamos con guías locales que conocen perfectamente el territorio.")
-    
-    with st.expander("7. ¿Qué debo empacar para un retiro místico?"):
-        st.write("Ropa cómoda de algodón, protector solar biodegradable, repelente natural y calzado para senderismo suave.")
-    
-    with st.expander("8. ¿La Línea Premium incluye transporte desde el aeropuerto?"):
-        st.write("Sí, incluye traslados privados en vehículos blindados o de alta gama desde y hacia el aeropuerto.")
-    
-    with st.expander("9. ¿Puedo personalizar un tour Estándar con servicios Premium?"):
-        st.write("¡Claro! Podemos añadir servicios adicionales 'a la carta' a cualquier paquete estándar.")
-    
-    with st.expander("10. ¿Cómo recibo mis vouchers de viaje?"):
-        st.write("Se envían de forma digital a tu correo electrónico y WhatsApp 48 horas después de confirmado el pago total.")
+    for q, a in faq_items:
+        with st.expander(q):
+            st.write(a)
 
 # 6. BOTÓN FLOTANTE
 st.markdown("""
