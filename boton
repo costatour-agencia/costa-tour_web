@@ -1,0 +1,36 @@
+# --- LÓGICA DE SUSCRIPCIÓN (BOTÓN) ---
+with col_info1:
+    st.markdown("### Suscríbete a Ofertas VIP")
+    email_input = st.text_input("Ingresa tu email", placeholder="ejemplo@correo.com", key="user_email")
+    if st.button("Unirme a la lista"):
+        if "@" in email_input and "." in email_input:
+            # Aquí se guarda el correo en la base de datos
+            guardar_suscriptor(email_input)
+            st.success(f"¡Bienvenido! {email_input} ha sido registrado.")
+        else:
+            st.error("Email inválido")
+
+# --- SECCIÓN DE ADMINISTRACIÓN PROTEGIDA (CONTRASEÑA) ---
+st.markdown("<br><br><hr>", unsafe_allow_html=True)
+with st.expander("🔐 Panel de Control de Clientes (Acceso Restringido)"):
+    st.markdown('<div class="admin-section">', unsafe_allow_html=True)
+    
+    # Campo para la contraseña
+    password = st.text_input("Ingresa la contraseña maestra:", type="password")
+    
+    # Validación de la clave
+    if password == "costa2024":
+        st.success("Acceso concedido.")
+        if st.session_state.suscriptores:
+            # Mostrar la tabla de datos
+            df = pd.DataFrame(st.session_state.suscriptores)
+            st.dataframe(df, use_container_width=True)
+            
+            # Botón para descargar el Excel
+            csv = df.to_csv(index=False).encode('utf-8')
+            st.download_button("📥 Descargar Excel", csv, "clientes.csv", "text/csv")
+    elif password != "":
+        st.error("Contraseña incorrecta.")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
