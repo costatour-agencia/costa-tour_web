@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 # 1. CONFIGURACIÓN DE PÁGINA
 st.set_page_config(
@@ -7,7 +8,7 @@ st.set_page_config(
     page_icon="✈️"
 )
 
-# 2. ESTILOS CSS - ENFOCADO EN BLANCO Y ELEGANCIA (RESTAURANDO COLORES)
+# 2. ESTILOS CSS - ENFOCADO EN BLANCO Y ELEGANCIA
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&display=swap');
@@ -65,23 +66,7 @@ st.markdown("""
 
     .stTabs [data-baseweb="tab"] {
         font-weight: 600;
-        color: #8B4513; /* Color café original */
-    }
-
-    /* Tarjetas de contacto Blancas (Premium) */
-    .contact-card {
-        background: white;
-        padding: 35px 20px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-        text-align: center;
-        border: 1px solid #f0f0f0;
-        margin-bottom: 20px;
-    }
-    
-    .contact-icon {
-        font-size: 28px;
-        margin-bottom: 15px;
+        color: #8B4513;
     }
 
     /* Footer Blanco */
@@ -122,6 +107,13 @@ st.markdown("""
         font-family: 'Lora', serif;
         color: #8B4513;
     }
+
+    /* Tabla Comparativa */
+    .comparison-table {
+        margin-top: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -146,7 +138,6 @@ with tab_inicio:
         </div>
         """, unsafe_allow_html=True)
     
-    # Texto de Introducción
     st.markdown("### ¿Quiénes somos?")
     st.write("""
     En Costa-Tour, redefinimos el concepto de viaje. Nacimos con la convicción de que el verdadero lujo no reside únicamente en un destino, sino en la calidad del servicio y la calidez humana que te acompaña en cada paso del camino.
@@ -154,7 +145,6 @@ with tab_inicio:
     No somos solo una agencia de viajes; somos arquitectos de memorias. Nos especializamos en conectar el corazón indomable de Colombia con el mundo, ofreciendo experiencias que equilibran la riqueza natural de nuestras costas con un estándar de servicio impecable.
     """)
 
-    # Galería de Destinos (RESTAURADA CON TUS IMÁGENES DE UNSPLASH)
     st.markdown("### Destinos que te esperan")
     img_cols = st.columns(4)
     urls = [
@@ -168,7 +158,6 @@ with tab_inicio:
         with col:
             st.image(urls[i], caption=captions[i], use_container_width=True)
 
-    # Filosofía
     st.markdown("<br>", unsafe_allow_html=True)
     col_a, col_b = st.columns(2)
     with col_a:
@@ -193,10 +182,34 @@ with tab_tours:
     cp1, cp2, cp3, cp4 = st.columns(4)
     # Paquetes Premium
     packs = [
-        ("Caribe Mágico", "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", "p1", "<b>Suite frente al mar.</b> Cena privada en la playa y barra libre premium."),
-        ("Pacífico Vivo", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s", "p2", "<b>Avistamiento privado.</b> Yate exclusivo y Eco-Lodge de alta gama."),
-        ("Pacífico Místico", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1", "p3", "<b>Sanación y Spa.</b> Retiro boutique con menú orgánico personalizado."),
-        ("Sol Caribe", "https://cdn2.paraty.es/landmar/images/865ffac6866fcba", "p4", "<b>Resort All-Inclusive.</b> Servicio de Concierge y traslados VIP.")
+        ("Caribe Mágico", "https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", "p1", """
+        **Experiencia de Lujo:**
+        - **Alojamiento:** Suite de lujo frente al mar.
+        - **Gastronomía:** Desayuno buffet y cena privada en la playa.
+        - **Servicios:** Barra libre premium y acceso a zonas VIP.
+        - **Extras:** Traslado privado aeropuerto-hotel.
+        """),
+        ("Pacífico Vivo", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeSN9RSQsxw_n-gbbbfOOsjBrcClZngt3DA&s", "p2", """
+        **Aventura Exclusiva:**
+        - **Alojamiento:** Eco-Lodge de alta gama con vista a la selva.
+        - **Actividad:** Avistamiento de ballenas en bote privado.
+        - **Gastronomía:** Menú de degustación ancestral.
+        - **Servicios:** Guía bilingüe especializado 24/7.
+        """),
+        ("Pacífico Místico", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/b0/c2/4f/private-beach-hotels.jpg?w=1200&h=-1&s=1", "p3", """
+        **Retiro de Bienestar:**
+        - **Alojamiento:** Hotel Boutique con spa privado.
+        - **Actividad:** Ritual de sanación y meditación al amanecer.
+        - **Gastronomía:** Plan de alimentación orgánico y personalizado.
+        - **Servicios:** Masajes y terapias termales incluidos.
+        """),
+        ("Sol Caribe", "https://cdn2.paraty.es/landmar/images/865ffac6866fcba", "p4", """
+        **Diversión Sin Límites:**
+        - **Alojamiento:** Resort All-Inclusive categoría 5 estrellas.
+        - **Actividad:** Tour privado en catamarán por las islas.
+        - **Servicios:** Servicio de Concierge dedicado.
+        - **Extras:** Kit de bienvenida premium.
+        """)
     ]
 
     for i, (nombre, img, key, desc) in enumerate(packs):
@@ -204,7 +217,7 @@ with tab_tours:
             st.image(img, use_container_width=True)
             st.markdown(f"<h5 style='text-align:center;'>{nombre}</h5>", unsafe_allow_html=True)
             if f"v_{key}" not in st.session_state: st.session_state[f"v_{key}"] = False
-            if st.button("Detalles Premium", key=f"btn_{key}"): 
+            if st.button("Ver Detalles Premium", key=f"btn_{key}"): 
                 st.session_state[f"v_{key}"] = not st.session_state[f"v_{key}"]
                 st.rerun()
             if st.session_state[f"v_{key}"]:
@@ -215,10 +228,34 @@ with tab_tours:
     
     ce1, ce2, ce3, ce4 = st.columns(4)
     std_packs = [
-        ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", "<b>Posadas con encanto.</b> Vive la cultura como un local."),
-        ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop", "e2", "<b>Aventura marina.</b> Hoteles modernos y clases de surf."),
-        ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", "<b>Noche y sabor.</b> Tour de bares y música en vivo."),
-        ("Ruta Marina", "https://blog.gimlivingspaces.com/hubfs/Muelle%20r%C3%BAstico%20de%20madera%20con%20una%20palapa%20con%20vistas%20a%20las%20aguas%20turquesas%20cristalinas%20en%20Isla%20Mujeres%2C%20playa%20de%20M%C3%A9xico.webp", "e4", "<b>Ecoturismo.</b> Avistamiento en manglares y hoteles sostenibles.")
+        ("Nuestra Costa", "https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", "e1", """
+        **Esencia Local:**
+        - **Alojamiento:** Posadas nativas con encanto caribeño.
+        - **Gastronomía:** Desayuno típico incluido.
+        - **Actividad:** Tour caminando por el centro histórico.
+        - **Servicios:** Seguro de viaje y asistencia básica.
+        """),
+        ("Marea", "https://plus.unsplash.com/premium_photo-1669748157617-a3a83cc8ea23?fm=jpg&q=60&w=3000&auto=format&fit=crop", "e2", """
+        **Aventura Activa:**
+        - **Alojamiento:** Hoteles modernos media gama.
+        - **Actividad:** Clase grupal de surf o kayak.
+        - **Servicios:** Traslados en lanchas compartidas.
+        - **Extras:** Snack de hidratación incluido.
+        """),
+        ("Ritmo Caribe", "https://condominiovistamar.com/wp-content/uploads/2025/07/playas-en-caovenas.webp", "e3", """
+        **Cultura y Sabor:**
+        - **Alojamiento:** Hostales boutique con áreas sociales.
+        - **Actividad:** Tour gastronómico por plazas locales.
+        - **Gastronomía:** Almuerzo típico de playa.
+        - **Servicios:** Guía local experto.
+        """),
+        ("Ruta Marina", "https://blog.gimlivingspaces.com/hubfs/Muelle%20r%C3%BAstico%20de%20madera%20con%20una%20palapa%20con%20vistas%20a%20las%20aguas%20turquesas%20cristalinas%20en%20Isla%20Mujeres%2C%20playa%20de%20M%C3%A9xico.webp", "e4", """
+        **Ecoturismo:**
+        - **Alojamiento:** Cabañas ecológicas sostenibles.
+        - **Actividad:** Paseo en canoa por manglares.
+        - **Servicios:** Educación ambiental durante el tour.
+        - **Extras:** Entradas a parques nacionales.
+        """)
     ]
 
     for i, (nombre, img, key, desc) in enumerate(std_packs):
@@ -226,34 +263,36 @@ with tab_tours:
             st.image(img, use_container_width=True)
             st.markdown(f"<h5 style='text-align:center;'>{nombre}</h5>", unsafe_allow_html=True)
             if f"v_{key}" not in st.session_state: st.session_state[f"v_{key}"] = False
-            if st.button("Ver más", key=f"btn_{key}"): 
+            if st.button("Ver Detalles", key=f"btn_{key}"): 
                 st.session_state[f"v_{key}"] = not st.session_state[f"v_{key}"]
                 st.rerun()
             if st.session_state[f"v_{key}"]:
                 st.markdown(f"<div class='package-description'>{desc}</div>", unsafe_allow_html=True)
 
+    # TABLA COMPARATIVA RESTAURADA
+    st.markdown("<br><h3 style='text-align: center;'>Comparativa de Líneas de Servicio</h3>", unsafe_allow_html=True)
+    comparativa = {
+        "Característica": ["Alojamiento", "Gastronomía", "Transporte", "Asistencia", "Exclusividad"],
+        "Línea Estándar": ["Hoteles 3* / Posadas", "Desayuno buffet", "Compartido", "24/7 Virtual", "Grupos dinámicos"],
+        "Línea Premium": ["Resorts 5* / Boutique", "Plan todo incluido", "Privado VIP", "24/7 Personalizado", "Grupos reducidos o privados"]
+    }
+    df_comp = pd.DataFrame(comparativa)
+    st.table(df_comp)
+
 # --- TAB ATENCIÓN ---
 with tab_atencion:
-    st.markdown("<h2 style='text-align: center;'>¿En qué podemos ayudarte?</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>Servicio al Cliente</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Gestione sus trámites y manténgase informado con nuestras herramientas oficiales.</p>", unsafe_allow_html=True)
     
-    # SECCIÓN DE CONTACTO "LA MÁS BONITA"
     st.markdown("<br>", unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.markdown("""<div class='contact-card'><div class='contact-icon'>📍</div><h4>Ubicación</h4><p>Medellín, Colombia<br>Atención Presencial (Cita previa)</p></div>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown("""<div class='contact-card'><div class='contact-icon'>✉️</div><h4>Email</h4><p>veronicaarangopedrozo<br>@gmail.com</p></div>""", unsafe_allow_html=True)
-    with c3:
-        st.markdown("""<div class='contact-card'><div class='contact-icon'>📞</div><h4>Teléfono</h4><p>+57 324 373 1661<br>Atención 24/7 Clientes</p></div>""", unsafe_allow_html=True)
-    
-    st.markdown("<hr>", unsafe_allow_html=True)
     col_p1, col_p2 = st.columns(2)
     with col_p1:
-        st.info("**PQR y Solicitudes**\n\nSi necesitas radicar un requerimiento formal, usa nuestro enlace seguro.")
-        st.link_button("Portal de Servicio", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u")
+        st.info("### 📝 Portal de PQR y Solicitudes\n\nRadique sus requerimientos, sugerencias o reclamos de manera formal a través de nuestro sistema de gestión.")
+        st.link_button("Ir al Formulario", "https://forms.office.com/pages/responsepage.aspx?id=IefhmYRxjkmK_7KtTlPBwmzEaoV6AVxMnWIMDnUV_6JUQjFRQVBCSEg5UldERzdTVkUxU1ZTRTFTMy4u")
+    
     with col_p2:
-        st.success("**Blog de Viajero**\n\nConsejos de equipaje, mejores temporadas y guías de viaje.")
-        st.link_button("Visitar el Blog", "https://tipsdeviajeparalacostacolombiana.blogspot.com/")
+        st.success("### 📖 Blog del Viajero\n\nEncuentre tips de viaje, guías de destinos y recomendaciones exclusivas para su próxima aventura en la costa.")
+        st.link_button("Leer el Blog", "https://tipsdeviajeparalacostacolombiana.blogspot.com/")
 
 # 5. FOOTER
 st.markdown("""
