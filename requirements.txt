@@ -1,1 +1,220 @@
 streamlit
+import streamlit as st
+import uuid
+from datetime import datetime
+import pandas as pd
+
+# 1. CONFIGURACIÓN DE PÁGINA
+st.set_page_config(
+    page_title="Costa-Tour | Agencia de Viajes", 
+    layout="wide", 
+    page_icon="✈️"
+)
+
+# --- CONFIGURACIÓN DE BASE DE DATOS (Simulada con Session State) ---
+if 'suscriptores' not in st.session_state:
+    st.session_state.suscriptores = [
+        {"email": "ejemplo@costatour.com", "fecha": "2024-05-20 10:00"},
+    ]
+
+def guardar_suscriptor(email):
+    nuevo = {"email": email, "fecha": datetime.now().strftime("%Y-%m-%d %H:%M")}
+    st.session_state.suscriptores.append(nuevo)
+
+# 2. ESTILOS CSS AVANZADOS
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&display=swap');
+
+    .stApp { background-color: #FFFFFF !important; }
+    
+    div.stButton > button {
+        background-color: #C0392B !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px;
+        padding: 10px 25px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .hero-section {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1616036740257-9449ea1f6605?q=80&w=1170&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        flex-direction: column;
+        border-radius: 0 0 50px 50px;
+        margin-bottom: 50px;
+    }
+
+    .hero-title {
+        color: white !important;
+        font-family: 'Lora', serif;
+        font-size: 60px;
+        margin-bottom: 10px;
+    }
+
+    .top-bar {
+        background-color: #8B4513;
+        color: white;
+        padding: 12px 60px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .package-description {
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #444;
+        padding: 20px;
+        background: #FDF5E6;
+        border-left: 5px solid #8B4513;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+
+    .whatsapp-float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white !important;
+        padding: 18px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        z-index: 1000;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    }
+
+    .admin-section {
+        background-color: #f1f3f5;
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #dee2e6;
+        margin-top: 30px;
+    }
+
+    .instagram-feed img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# 3. BARRA SUPERIOR
+st.markdown("""
+    <div class="top-bar">
+        <div>📞 +57 324 373 1661 | ✉️ veronicaarangopedrozo@gmail.com</div>
+        <div>📍 Medellín | Colombia</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# 4. LOGOTIPO
+col_l, _ = st.columns([1, 3])
+with col_l:
+    st.image("https://i.ibb.co/ds6F7b72/ve.png", width=250)
+
+# 5. MENÚ PRINCIPAL
+tab_inicio, tab_tours, tab_info_blog = st.tabs([
+    "🏠 CONÓCENOS", "🌊 NUESTROS TOURS", "📋 INFORMACIÓN Y BLOG"
+])
+
+# --- PESTAÑA: CONÓCENOS ---
+with tab_inicio:
+    st.markdown("""
+        <div class="hero-section">
+            <h1 class="hero-title">Costa-Tour</h1>
+            <p style='font-size: 22px; font-style: italic;'>
+                "El viaje es el servicio, y el destino es tu felicidad."
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("### Nuestra Historia")
+    st.write("En Costa-Tour, redefinimos el concepto de viaje. Nacimos con la convicción de que el verdadero lujo reside en la calidez humana.")
+
+    st.markdown("<br>### Síguenos en @CostaTour")
+    insta_cols = st.columns(6)
+    insta_imgs = [
+        "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1170&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=1230&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1173&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1520483601560-389dff434fdf?q=80&w=1170&auto=format&fit=crop", # Imagen corregida
+        "https://images.unsplash.com/photo-1544945582-3b46bbd79791?q=80&w=1170&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?q=80&w=1172&auto=format&fit=crop"
+    ]
+    for i, img_url in enumerate(insta_imgs):
+        with insta_cols[i]:
+            st.markdown(f'<div class="instagram-feed"><img src="{img_url}"></div>', unsafe_allow_html=True)
+
+# --- PESTAÑA: NUESTROS TOURS ---
+with tab_tours:
+    st.markdown("<h2 style='text-align: center;'>Nuestros Planes</h2>", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("https://www.latamairlines.com/content/dam/latamxp/sites/vamos-latam/news-colombia/lista-latam/res_shutterstock_1312464929.jpg", use_container_width=True)
+        st.markdown("#### Nuestra Costa")
+        with st.expander("Ver Detalles"):
+            st.markdown("<div class='package-description'><b>Alojamiento:</b> Posadas con encanto.<br><b>Servicios:</b> Desayunos y guía local.</div>", unsafe_allow_html=True)
+    with col2:
+        st.image("https://media-cdn.tripadvisor.com/media/photo-s/2f/59/25/75/caption.jpg", use_container_width=True)
+        st.markdown("#### Caribe Mágico (Premium)")
+        with st.expander("Ver Detalles VIP"):
+            st.markdown("<div class='package-description'><b>Incluye:</b> Suite frente al mar y cena privada.</div>", unsafe_allow_html=True)
+
+# --- PESTAÑA: INFORMACIÓN, BLOG Y FAQ ---
+with tab_info_blog:
+    col_info1, col_info2 = st.columns([1, 1])
+    
+    with col_info1:
+        st.markdown("### Suscríbete a Ofertas VIP")
+        email_input = st.text_input("Ingresa tu email", placeholder="ejemplo@correo.com", key="user_email")
+        if st.button("Unirme a la lista"):
+            if "@" in email_input and "." in email_input:
+                guardar_suscriptor(email_input)
+                st.success(f"¡Bienvenido! {email_input} ha sido registrado.")
+            else:
+                st.error("Email inválido")
+    
+    with col_info2:
+        st.markdown("### Zonas de Cobertura")
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mapa_de_Colombia_%28regiones_naturales%29.svg/1200px-Mapa_de_Colombia_%28regiones_naturales%29.svg.png", width=300)
+
+    st.markdown("### Preguntas Frecuentes")
+    with st.expander("¿Los planes incluyen seguro médico?"):
+        st.write("Sí, todos nuestros planes cuentan con una póliza de asistencia médica integral.")
+
+# --- SECCIÓN DE ADMINISTRACIÓN PROTEGIDA ---
+st.markdown("<br><br><hr>", unsafe_allow_html=True)
+with st.expander("🔐 Panel de Control de Clientes (Acceso Restringido)"):
+    st.markdown('<div class="admin-section">', unsafe_allow_html=True)
+    password = st.text_input("Ingresa la contraseña maestra:", type="password")
+    
+    if password == "costa2024":
+        st.success("Acceso concedido.")
+        if st.session_state.suscriptores:
+            df = pd.DataFrame(st.session_state.suscriptores)
+            st.dataframe(df, use_container_width=True)
+            csv = df.to_csv(index=False).encode('utf-8')
+            st.download_button("📥 Descargar Excel", csv, "clientes.csv", "text/csv")
+    elif password != "":
+        st.error("Contraseña incorrecta.")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# 6. BOTÓN FLOTANTE WHATSAPP
+st.markdown("""
+    <a href="https://wa.me/573243731661" class="whatsapp-float" target="_blank">
+         📲 Hablar con un Asesor
+    </a>
+    """, unsafe_allow_html=True)
+    
